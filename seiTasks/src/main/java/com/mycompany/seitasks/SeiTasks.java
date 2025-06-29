@@ -12,5 +12,6 @@ public class SeiTasks {
 
     public static void main(String[] args) {
         System.out.println("lsadjclsakdcj");
+        Object Hola = new Object();
     }
 }
