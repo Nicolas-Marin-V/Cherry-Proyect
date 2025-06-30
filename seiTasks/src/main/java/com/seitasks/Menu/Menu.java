@@ -4,11 +4,13 @@
  */
 package com.seitasks.Menu;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -49,6 +51,17 @@ public class Menu extends javax.swing.JPanel {
             datos,
             columnas
         ));
+        tablaTareas.setBackground(Color.decode("#FDF9F6"));
+        tablaTareas.setForeground(Color.decode("#4E342E"));
+        tablaTareas.setGridColor(Color.decode("#BCAAA4"));
+
+        tablaTareas.setSelectionBackground(Color.decode("#EDE0D4"));
+        tablaTareas.setSelectionForeground(Color.decode("#3E2723"));
+
+        JTableHeader header = tablaTareas.getTableHeader();
+        header.setBackground(Color.decode("#D7CCC8"));
+        header.setForeground(Color.decode("#3E2723"));
+
     }
     
     /**
@@ -73,6 +86,7 @@ public class Menu extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTareas = new javax.swing.JTable();
         comboPrioridad = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
@@ -123,47 +137,62 @@ public class Menu extends javax.swing.JPanel {
         jLabel2.setText("Tareas");
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 1010, -1));
 
+        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setText("Nombre");
         txtNombre.setToolTipText("");
+        txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
-        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 160, 20));
+        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 160, 20));
 
+        chkCompletada.setBackground(new java.awt.Color(255, 255, 255));
         chkCompletada.setText("Completa");
+        chkCompletada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkCompletada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkCompletadaActionPerformed(evt);
             }
         });
-        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, -1, -1));
+        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
 
+        btnGuardar.setBackground(new java.awt.Color(93, 64, 55));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, -1, -1));
+        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
 
+        btnComplete.setBackground(new java.awt.Color(93, 64, 55));
+        btnComplete.setForeground(new java.awt.Color(255, 255, 255));
         btnComplete.setText("Completada");
+        btnComplete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteActionPerformed(evt);
             }
         });
-        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, -1, -1));
+        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, -1));
 
+        delete.setBackground(new java.awt.Color(93, 64, 55));
+        delete.setForeground(new java.awt.Color(255, 255, 255));
         delete.setText("Eliminar");
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
-        bg.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, -1, -1));
+        bg.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
+        tablaTareas.setBackground(new java.awt.Color(253, 249, 246));
+        tablaTareas.setForeground(new java.awt.Color(78, 52, 46));
         tablaTareas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -175,17 +204,26 @@ public class Menu extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaTareas.setGridColor(new java.awt.Color(188, 170, 164));
+        tablaTareas.setSelectionBackground(new java.awt.Color(237, 224, 212));
+        tablaTareas.setSelectionForeground(new java.awt.Color(62, 39, 35));
         jScrollPane2.setViewportView(tablaTareas);
 
-        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, -1, -1));
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, -1, -1));
 
+        comboPrioridad.setBackground(new java.awt.Color(255, 255, 255));
         comboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPrioridad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboPrioridad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPrioridadActionPerformed(evt);
             }
         });
-        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, -1, -1));
+        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(62, 39, 35));
+        jLabel3.setText("Creacion de Tareas");
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -279,6 +317,7 @@ public class Menu extends javax.swing.JPanel {
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
