@@ -14,7 +14,7 @@ import javax.swing.table.JTableHeader;
 
 /**
  *
- * @author Nicolas Marin
+ * @author Gabriel
  */
 public class Menu extends javax.swing.JPanel {
 

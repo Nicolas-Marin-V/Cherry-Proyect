@@ -5,6 +5,7 @@ package com.seitasks.Menu;
  */
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.io.File;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,9 +19,20 @@ public class TareaManager {
     private static final Gson gson = new Gson();
 
     public static List<Tarea> cargarTareas() {
-        try (FileReader reader = new FileReader(Archivo)) {
+        File archivo = new File(Archivo);
+
+        if (!archivo.exists()) {
+            return new ArrayList<>();
+        }
+
+        try (FileReader reader = new FileReader(archivo)) {
+            if (archivo.length() == 0) {
+                return new ArrayList<>();
+            }
+
             Type listType = new TypeToken<List<Tarea>>() {}.getType();
-            return gson.fromJson(reader, listType);
+            List<Tarea> tareas = gson.fromJson(reader, listType);
+            return (tareas != null) ? tareas : new ArrayList<>();
         } catch (IOException e) {
             return new ArrayList<>();
         }
