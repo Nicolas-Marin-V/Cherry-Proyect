@@ -26,19 +26,179 @@ public class Menu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtPrioridad = new javax.swing.JTextField();
+        chkCompletada = new javax.swing.JCheckBox();
+        btnGuardar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtResultado = new javax.swing.JTextArea();
+        btnLeer = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        bg.setBackground(new java.awt.Color(248, 244, 239));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(131, 103, 93));
+        jPanel1.setPreferredSize(new java.awt.Dimension(300, 720));
+
+        jLabel1.setBackground(new java.awt.Color(255, 248, 240));
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 248, 240));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SeiTasks");
+        jLabel1.setToolTipText("");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 248, 240));
+        jLabel6.setText("Tareas");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(79, 79, 79)
+                .addComponent(jLabel6)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 720));
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(62, 39, 35));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Tareas");
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 1010, -1));
+
+        txtNombre.setText("Nombre");
+        txtNombre.setToolTipText("");
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
+
+        txtPrioridad.setText("Prioridad");
+        txtPrioridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrioridadActionPerformed(evt);
+            }
+        });
+        bg.add(txtPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 140, -1));
+
+        chkCompletada.setText("Completa");
+        chkCompletada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkCompletadaActionPerformed(evt);
+            }
+        });
+        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, -1, -1));
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, -1));
+
+        txtResultado.setColumns(20);
+        txtResultado.setRows(5);
+        jScrollPane1.setViewportView(txtResultado);
+
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, -1, -1));
+
+        btnLeer.setText("leer");
+        btnLeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeerActionPerformed(evt);
+            }
+        });
+        bg.add(btnLeer, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String nombre = txtNombre.getText();
+        int prioridad = Integer.parseInt(txtPrioridad.getText());
+        boolean completada = chkCompletada.isSelected();
+
+        Tarea tarea = new Tarea(nombre, prioridad, completada);
+
+        GuardarTarea.guardarEnJson(tarea, "data/tarea.json");
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
+        Tarea tarea = LeerTarea.leerDesdeJson("data/tarea.json");
+
+        if (tarea != null) {
+            txtResultado.setText(
+                "Nombre: " + tarea.getNombre() + "\n" +
+                "Prioridad: " + tarea.getPrioridad() + "\n" +
+                "Completada: " + (tarea.isCompletada() ? "Sí" : "No")
+            );
+        } else {
+            txtResultado.setText("No se pudo leer la tarea.");
+        }
+    }//GEN-LAST:event_btnLeerActionPerformed
+
+    private void chkCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkCompletadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkCompletadaActionPerformed
+
+    private void txtPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrioridadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrioridadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLeer;
+    private javax.swing.JCheckBox chkCompletada;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrioridad;
+    private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }
