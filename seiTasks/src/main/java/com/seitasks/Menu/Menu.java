@@ -4,6 +4,12 @@
  */
 package com.seitasks.Menu;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Nicolas Marin
@@ -15,8 +21,36 @@ public class Menu extends javax.swing.JPanel {
      */
     public Menu() {
         initComponents();
+        cargarTareasEnTabla(); // si lo usas
+        cargarPrioridades();
+        
     }
+    
+    private void cargarPrioridades() {
+        comboPrioridad.removeAllItems();
+        for (int i = 1; i <= 5; i++){
+            comboPrioridad.addItem(String.valueOf(i));
+        }
+    }
+    
+    private void cargarTareasEnTabla() {
+        List<Tarea> tareas = TareaManager.cargarTareas();
 
+        String[] columnas = {"Nombre", "Prioridad", "Completada"};
+        Object[][] datos = new Object[tareas.size()][3];
+
+        for (int i = 0; i < tareas.size(); i++) {
+            Tarea t = tareas.get(i);
+            datos[i][0] = t.getNombre();
+            datos[i][1] = t.getPrioridad();
+            datos[i][2] = t.isCompletada() ? "Sí" : "No";
+        }
+        tablaTareas.setModel(new javax.swing.table.DefaultTableModel(
+            datos,
+            columnas
+        ));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,12 +66,13 @@ public class Menu extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtPrioridad = new javax.swing.JTextField();
         chkCompletada = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtResultado = new javax.swing.JTextArea();
-        btnLeer = new javax.swing.JButton();
+        btnComplete = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaTareas = new javax.swing.JTable();
+        comboPrioridad = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
@@ -95,15 +130,7 @@ public class Menu extends javax.swing.JPanel {
                 txtNombreActionPerformed(evt);
             }
         });
-        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
-
-        txtPrioridad.setText("Prioridad");
-        txtPrioridad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrioridadActionPerformed(evt);
-            }
-        });
-        bg.add(txtPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 140, -1));
+        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 160, 20));
 
         chkCompletada.setText("Completa");
         chkCompletada.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +138,7 @@ public class Menu extends javax.swing.JPanel {
                 chkCompletadaActionPerformed(evt);
             }
         });
-        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, -1, -1));
+        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, -1, -1));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,21 +146,46 @@ public class Menu extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
-        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, -1));
+        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, -1, -1));
 
-        txtResultado.setColumns(20);
-        txtResultado.setRows(5);
-        jScrollPane1.setViewportView(txtResultado);
-
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, -1, -1));
-
-        btnLeer.setText("leer");
-        btnLeer.addActionListener(new java.awt.event.ActionListener() {
+        btnComplete.setText("Completada");
+        btnComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLeerActionPerformed(evt);
+                btnCompleteActionPerformed(evt);
             }
         });
-        bg.add(btnLeer, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
+        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, -1, -1));
+
+        delete.setText("Eliminar");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+        bg.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, -1, -1));
+
+        tablaTareas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaTareas);
+
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, -1, -1));
+
+        comboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPrioridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPrioridadActionPerformed(evt);
+            }
+        });
+        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -149,56 +201,88 @@ public class Menu extends javax.swing.JPanel {
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-        
-        
-        
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String nombre = txtNombre.getText();
-        int prioridad = Integer.parseInt(txtPrioridad.getText());
+        int prioridad = Integer.parseInt((String) comboPrioridad.getSelectedItem());
         boolean completada = chkCompletada.isSelected();
 
         Tarea tarea = new Tarea(nombre, prioridad, completada);
 
-        GuardarTarea.guardarEnJson(tarea, "data/tarea.json");
+        try {
+            TareaManager.agregarTarea(tarea);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        cargarTareasEnTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
-        Tarea tarea = LeerTarea.leerDesdeJson("data/tarea.json");
+    private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
 
-        if (tarea != null) {
-            txtResultado.setText(
-                "Nombre: " + tarea.getNombre() + "\n" +
-                "Prioridad: " + tarea.getPrioridad() + "\n" +
-                "Completada: " + (tarea.isCompletada() ? "Sí" : "No")
-            );
-        } else {
-            txtResultado.setText("No se pudo leer la tarea.");
-        }
-    }//GEN-LAST:event_btnLeerActionPerformed
+        int filaSeleccionada = tablaTareas.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            boolean exito = false;
+            try {
+                exito = TareaManager.marcarComoCompletadaPorIndice(filaSeleccionada);
+            } catch (IOException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (exito) {
+                JOptionPane.showMessageDialog(this, "Tarea marcada como completada.");
+                cargarTareasEnTabla(); // refrescar
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo marcar la tarea.");
+            }
+     } else {
+            JOptionPane.showMessageDialog(this, "Selecciona una tarea de la tabla.");
+    }   
+        cargarTareasEnTabla();
+    }//GEN-LAST:event_btnCompleteActionPerformed
 
     private void chkCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkCompletadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkCompletadaActionPerformed
 
-    private void txtPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrioridadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrioridadActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        String nombre = txtNombre.getText();
+
+        boolean exito = false;
+        try {
+            exito = TareaManager.eliminarTareaPorNombre(nombre);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "Tarea eliminada con éxito.");
+        } else {
+        JOptionPane.showMessageDialog(this, "No se encontró una tarea con ese nombre.");
+        }
+        
+        cargarTareasEnTabla();
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void comboPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPrioridadActionPerformed
+        
+    }//GEN-LAST:event_comboPrioridadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnComplete;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLeer;
     private javax.swing.JCheckBox chkCompletada;
+    private javax.swing.JComboBox<String> comboPrioridad;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaTareas;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrioridad;
-    private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,21 +15,5 @@ public class MainTareas {
         ventana.pack(); 
         ventana.setLocationRelativeTo(null); 
         ventana.setVisible(true); 
-        
-        // Crear una tarea
-        Tarea tarea = new Tarea("Estudiar para examen", 1, false);
-
-        // Guardarla en JSON
-        GuardarTarea.guardarEnJson(tarea, "tarea.json");
-
-        // Leerla desde JSON
-        Tarea tareaLeida = LeerTarea.leerDesdeJson("tarea.json");
-
-        // Mostrar los datos
-        if (tareaLeida != null) {
-            System.out.println("Nombre: " + tareaLeida.getNombre());
-            System.out.println("Prioridad: " + tareaLeida.getPrioridad());
-            System.out.println("Completada: " + tareaLeida.isCompletada());
-        }
     }
 }
