@@ -1,10 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.seitasks.FlashCards;
 
-public class Node<T> {
+import java.io.Serializable;
+
+public class Node<T> implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public T Dato;
     public Node<T> nextNode;
     public Node<T> left;

@@ -1,12 +1,11 @@
 package com.seitasks.FlashCards;
-/**
- *
- * @author esteb
- */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LinkedList<T> {
+public class LinkedList<T> implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public Node<T> Head, Tail;
 
     public LinkedList(){
@@ -64,5 +63,15 @@ public class LinkedList<T> {
             actual = actual.nextNode;
         }
         return elementos;
+    }
+
+    public int size() {
+        int count = 0;
+        Node<T> actual = Head;
+        while (actual != null) {
+            count++;
+            actual = actual.nextNode;
+        }
+        return count;
     }
 }

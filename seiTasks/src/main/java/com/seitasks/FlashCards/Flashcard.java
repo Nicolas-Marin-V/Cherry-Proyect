@@ -1,12 +1,10 @@
-
 package com.seitasks.FlashCards;
 
-/**
- *
- * @author esteb
- */
-public class Flashcard {
+import java.io.Serializable;
 
+public class Flashcard implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     String Pregunta;
     String Respuesta;
     
@@ -30,5 +28,4 @@ public class Flashcard {
     public void setRespuesta(String Respuesta) {
         this.Respuesta = Respuesta;
     }
-    
 }

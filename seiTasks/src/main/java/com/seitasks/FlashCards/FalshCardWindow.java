@@ -3,13 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.seitasks.FlashCards;
-
+import java.io.*;
+import java.util.ArrayList;
 
 public class FalshCardWindow extends javax.swing.JPanel {
-
-    /**
-     * Creates new form FalshCard
-     */
+    
+    private LinkedList<Flashcard> listaFlashcards = new LinkedList<>();
+    private ArrayList<Flashcard> arrayFlashcards = new ArrayList<>();
+    private int indiceActual = -1;
+    private static final String ARCHIVO_DATOS = "flashcards.dat";
+    
     public FalshCardWindow() {
         initComponents();
     }
@@ -46,11 +49,25 @@ public class FalshCardWindow extends javax.swing.JPanel {
         Background.setBackground(new java.awt.Color(248, 244, 239));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        FlashCardAdd.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Flash Card");
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Pregunta:");
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Respuesta:");
+
+        Preguntatxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PreguntatxtActionPerformed(evt);
+            }
+        });
 
         Respuestatxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,9 +75,14 @@ public class FalshCardWindow extends javax.swing.JPanel {
             }
         });
 
-        Add.setBackground(new java.awt.Color(51, 0, 102));
-        Add.setForeground(new java.awt.Color(204, 204, 204));
+        Add.setBackground(new java.awt.Color(51, 0, 51));
+        Add.setForeground(new java.awt.Color(255, 255, 255));
         Add.setText("Agregar");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FlashCardAddLayout = new javax.swing.GroupLayout(FlashCardAdd);
         FlashCardAdd.setLayout(FlashCardAddLayout);
@@ -69,22 +91,21 @@ public class FalshCardWindow extends javax.swing.JPanel {
             .addGroup(FlashCardAddLayout.createSequentialGroup()
                 .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FlashCardAddLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel3))
-                    .addGroup(FlashCardAddLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Preguntatxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Respuestatxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Add, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(FlashCardAddLayout.createSequentialGroup()
-                                .addComponent(Add)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(FlashCardAddLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Respuestatxt))
-                            .addGroup(FlashCardAddLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(Preguntatxt, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(FlashCardAddLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(0, 61, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         FlashCardAddLayout.setVerticalGroup(
@@ -93,23 +114,24 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(Preguntatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(Respuestatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Preguntatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(Respuestatxt, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(Add)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
 
         Background.add(FlashCardAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 200, 380));
 
+        ShowFlashcard.setBackground(new java.awt.Color(0, 0, 0));
         ShowFlashcard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Pregunta.setBackground(new java.awt.Color(204, 204, 204));
+        Pregunta.setBackground(new java.awt.Color(51, 0, 51));
 
         PreguntatxtArea.setBackground(new java.awt.Color(204, 204, 204));
         PreguntatxtArea.setColumns(20);
@@ -135,7 +157,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
 
         ShowFlashcard.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 390, -1));
 
-        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel5.setBackground(new java.awt.Color(51, 0, 51));
 
         RespuestatxtArea.setColumns(20);
         RespuestatxtArea.setRows(5);
@@ -158,9 +180,14 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        ShowFlashcard.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 390, -1));
+        ShowFlashcard.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 390, 110));
 
         Anterior.setText("Anterior");
+        Anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnteriorActionPerformed(evt);
+            }
+        });
         ShowFlashcard.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         Siguiente.setText("Siguiente");
@@ -185,14 +212,122 @@ public class FalshCardWindow extends javax.swing.JPanel {
             .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+    private void configurarEventos() {
+        Add.addActionListener(e -> agregarTarjeta());
+        Anterior.addActionListener(e -> mostrarPrevious());
+        Siguiente.addActionListener(e -> mostrarNext());
+    }
+    private void saveFlashcards() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_DATOS))) {
+            oos.writeObject(listaFlashcards);
+        } catch (IOException e) {
+            System.err.println("Error saving: " + e.getMessage());
+        }
+    }
+    @SuppressWarnings("unchecked")
+    private void loadFlashcards() {
+        File archivo = new File(ARCHIVO_DATOS);
+        if (!archivo.exists()) return;
 
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_DATOS))) {
+            listaFlashcards = (LinkedList<Flashcard>) ois.readObject();
+            
+            arrayFlashcards.clear();
+            Node<Flashcard> currentNode = listaFlashcards.Head;
+            while (currentNode != null) {
+                arrayFlashcards.add(currentNode.Dato);
+                currentNode = currentNode.nextNode;
+            }
+            
+            if (!arrayFlashcards.isEmpty()) {
+                indiceActual = 0;
+                mostrarCard(indiceActual);
+            }
+            
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error loading: " + e.getMessage());
+        }
+    }
+    private void agregarTarjeta() {
+        String pregunta = Preguntatxt.getText().trim();
+        String respuesta = Respuestatxt.getText().trim();
+        
+        if (pregunta.isEmpty() || respuesta.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Complete ambos campos", 
+                "Campos vacíos", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Flashcard nuevaTarjeta = new Flashcard(pregunta, respuesta);
+        listaFlashcards.add(nuevaTarjeta);
+        arrayFlashcards.add(nuevaTarjeta);
+
+        saveFlashcards();
+
+        Preguntatxt.setText("");
+        Respuestatxt.setText("");
+
+        if (arrayFlashcards.size() == 1) {
+            indiceActual = 0;
+            mostrarCard(indiceActual);
+        }
+        
+        updateButtons();
+        
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Flashcard agregada exitosamente", 
+            "Success", 
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void mostrarCard(int index) {
+        if (index >= 0 && index < arrayFlashcards.size()) {
+            Flashcard fc = arrayFlashcards.get(index);
+            PreguntatxtArea.setText(fc.getPregunta());
+            RespuestatxtArea.setText(fc.getRespuesta());
+        } else {
+            PreguntatxtArea.setText("");
+            RespuestatxtArea.setText("");
+        }
+        updateButtons();
+    }
+    private void mostrarPrevious() {
+        if (indiceActual > 0) {
+            indiceActual--;
+            mostrarCard(indiceActual);
+        }
+    }
+    private void mostrarNext() {
+        if (indiceActual < arrayFlashcards.size() - 1) {
+            indiceActual++;
+            mostrarCard(indiceActual);
+        }
+    }
+     private void updateButtons() {
+        boolean hayTarjetas = !arrayFlashcards.isEmpty();
+        Anterior.setEnabled(hayTarjetas && indiceActual > 0);
+        Siguiente.setEnabled(hayTarjetas && indiceActual < arrayFlashcards.size() - 1);
+    }
     private void RespuestatxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RespuestatxtActionPerformed
-        // TODO add your handling code here:
+        agregarTarjeta();
     }//GEN-LAST:event_RespuestatxtActionPerformed
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
-        // TODO add your handling code here:
+        mostrarNext();
     }//GEN-LAST:event_SiguienteActionPerformed
+
+    private void PreguntatxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreguntatxtActionPerformed
+        Respuestatxt.requestFocus();
+    }//GEN-LAST:event_PreguntatxtActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        agregarTarjeta();
+    }//GEN-LAST:event_AddActionPerformed
+
+    private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
+        mostrarPrevious();
+    }//GEN-LAST:event_AnteriorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
