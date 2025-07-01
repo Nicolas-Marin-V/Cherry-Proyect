@@ -23,19 +23,195 @@ public class FalshCardWindow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Background = new javax.swing.JPanel();
+        FlashCardAdd = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        Preguntatxt = new javax.swing.JTextField();
+        Respuestatxt = new javax.swing.JTextField();
+        Add = new javax.swing.JButton();
+        ShowFlashcard = new javax.swing.JPanel();
+        Pregunta = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PreguntatxtArea = new javax.swing.JTextArea();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        RespuestatxtArea = new javax.swing.JTextArea();
+        Anterior = new javax.swing.JButton();
+        Siguiente = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(640, 360));
+
+        Background.setBackground(new java.awt.Color(248, 244, 239));
+        Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setText("Flash Card");
+
+        jLabel4.setText("Pregunta:");
+
+        jLabel5.setText("Respuesta:");
+
+        Respuestatxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RespuestatxtActionPerformed(evt);
+            }
+        });
+
+        Add.setBackground(new java.awt.Color(51, 0, 102));
+        Add.setForeground(new java.awt.Color(204, 204, 204));
+        Add.setText("Agregar");
+
+        javax.swing.GroupLayout FlashCardAddLayout = new javax.swing.GroupLayout(FlashCardAdd);
+        FlashCardAdd.setLayout(FlashCardAddLayout);
+        FlashCardAddLayout.setHorizontalGroup(
+            FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FlashCardAddLayout.createSequentialGroup()
+                .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FlashCardAddLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel3))
+                    .addGroup(FlashCardAddLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FlashCardAddLayout.createSequentialGroup()
+                                .addComponent(Add)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(FlashCardAddLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Respuestatxt))
+                            .addGroup(FlashCardAddLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(Preguntatxt, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        FlashCardAddLayout.setVerticalGroup(
+            FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FlashCardAddLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Preguntatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(Respuestatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Add)
+                .addContainerGap(211, Short.MAX_VALUE))
+        );
+
+        Background.add(FlashCardAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 200, 380));
+
+        ShowFlashcard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Pregunta.setBackground(new java.awt.Color(204, 204, 204));
+
+        PreguntatxtArea.setBackground(new java.awt.Color(204, 204, 204));
+        PreguntatxtArea.setColumns(20);
+        PreguntatxtArea.setRows(5);
+        jScrollPane1.setViewportView(PreguntatxtArea);
+
+        javax.swing.GroupLayout PreguntaLayout = new javax.swing.GroupLayout(Pregunta);
+        Pregunta.setLayout(PreguntaLayout);
+        PreguntaLayout.setHorizontalGroup(
+            PreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PreguntaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        PreguntaLayout.setVerticalGroup(
+            PreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PreguntaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        ShowFlashcard.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 390, -1));
+
+        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
+
+        RespuestatxtArea.setColumns(20);
+        RespuestatxtArea.setRows(5);
+        jScrollPane2.setViewportView(RespuestatxtArea);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        ShowFlashcard.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 390, -1));
+
+        Anterior.setText("Anterior");
+        ShowFlashcard.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+
+        Siguiente.setText("Siguiente");
+        Siguiente.setActionCommand("Siguiente");
+        Siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SiguienteActionPerformed(evt);
+            }
+        });
+        ShowFlashcard.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
+
+        Background.add(ShowFlashcard, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 430, 330));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void RespuestatxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RespuestatxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RespuestatxtActionPerformed
+
+    private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SiguienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
+    private javax.swing.JButton Anterior;
+    private javax.swing.JPanel Background;
+    private javax.swing.JPanel FlashCardAdd;
+    private javax.swing.JPanel Pregunta;
+    private javax.swing.JTextField Preguntatxt;
+    private javax.swing.JTextArea PreguntatxtArea;
+    private javax.swing.JTextField Respuestatxt;
+    private javax.swing.JTextArea RespuestatxtArea;
+    private javax.swing.JPanel ShowFlashcard;
+    private javax.swing.JButton Siguiente;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
