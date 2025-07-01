@@ -50,7 +50,7 @@ public class TareaManager {
         guardarTareas(tareas);
     }
     
-    public static boolean eliminarTareaPorNombre(String nombre) throws IOException {
+    public static boolean eliminarTareaNombre(String nombre) throws IOException {
     List<Tarea> tareas = cargarTareas();
     boolean eliminada = tareas.removeIf(t -> t.getNombre().equalsIgnoreCase(nombre));
 
@@ -58,7 +58,7 @@ public class TareaManager {
         guardarTareas(tareas);
     }return eliminada;}
     
-    public static boolean marcarComoCompletadaPorIndice(int index) throws IOException {
+    public static boolean marcarCompletadaIndice(int index) throws IOException {
     List<Tarea> tareas = cargarTareas();
 
     if (index >= 0 && index < tareas.size()) {

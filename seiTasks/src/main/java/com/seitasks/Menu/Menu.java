@@ -264,7 +264,7 @@ public class Menu extends javax.swing.JPanel {
         if (filaSeleccionada != -1) {
             boolean exito = false;
             try {
-                exito = TareaManager.marcarComoCompletadaPorIndice(filaSeleccionada);
+                exito = TareaManager.marcarCompletadaIndice(filaSeleccionada);
             } catch (IOException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -289,7 +289,7 @@ public class Menu extends javax.swing.JPanel {
 
         boolean exito = false;
         try {
-            exito = TareaManager.eliminarTareaPorNombre(nombre);
+            exito = TareaManager.eliminarTareaNombre(nombre);
         } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
