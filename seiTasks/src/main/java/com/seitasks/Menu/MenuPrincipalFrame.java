@@ -5,6 +5,7 @@
 package com.seitasks.Menu;
 
 import com.seitasks.FlashCards.MainCards;
+import com.seitasks.Pomodoro.MainPomodoro;
 import com.seitasks.encuesta.GraficadorBarras;
 import com.seitasks.encuesta.GraficasTorta;
 import com.seitasks.encuesta.LectorEncuesta;
@@ -136,7 +137,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonEstadisticasActionPerformed
 
     private void BotonPomodoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPomodoroActionPerformed
-        // TODO add your handling code here:
+        MainPomodoro.main();
     }//GEN-LAST:event_BotonPomodoroActionPerformed
 
     private void BotonListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonListaActionPerformed
