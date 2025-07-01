@@ -6,7 +6,7 @@ import javax.swing.JFrame;
  * @author Gabriel
  */
 public class MainTareas {
-    public static void main(String[] args) {
+    public static void main() {
         JFrame ventana = new JFrame("SeiTasks");
 
         ventana.setContentPane(new Menu());
