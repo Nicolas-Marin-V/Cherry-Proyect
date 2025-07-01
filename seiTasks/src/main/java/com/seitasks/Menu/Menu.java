@@ -4,9 +4,17 @@
  */
 package com.seitasks.Menu;
 
+import java.awt.Color;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.JTableHeader;
+
 /**
  *
- * @author Nicolas Marin
+ * @author Gabriel
  */
 public class Menu extends javax.swing.JPanel {
 
@@ -15,8 +23,47 @@ public class Menu extends javax.swing.JPanel {
      */
     public Menu() {
         initComponents();
+        cargarTareasEnTabla(); // si lo usas
+        cargarPrioridades();
+        
     }
+    
+    private void cargarPrioridades() {
+        comboPrioridad.removeAllItems();
+        for (int i = 1; i <= 5; i++){
+            comboPrioridad.addItem(String.valueOf(i));
+        }
+    }
+    
+    private void cargarTareasEnTabla() {
+        List<Tarea> tareas = TareaManager.cargarTareas();
 
+        String[] columnas = {"Nombre", "Prioridad", "Completada"};
+        Object[][] datos = new Object[tareas.size()][3];
+
+        for (int i = 0; i < tareas.size(); i++) {
+            Tarea t = tareas.get(i);
+            datos[i][0] = t.getNombre();
+            datos[i][1] = t.getPrioridad();
+            datos[i][2] = t.isCompletada() ? "Sí" : "No";
+        }
+        tablaTareas.setModel(new javax.swing.table.DefaultTableModel(
+            datos,
+            columnas
+        ));
+        tablaTareas.setBackground(Color.decode("#FDF9F6"));
+        tablaTareas.setForeground(Color.decode("#4E342E"));
+        tablaTareas.setGridColor(Color.decode("#BCAAA4"));
+
+        tablaTareas.setSelectionBackground(Color.decode("#EDE0D4"));
+        tablaTareas.setSelectionForeground(Color.decode("#3E2723"));
+
+        JTableHeader header = tablaTareas.getTableHeader();
+        header.setBackground(Color.decode("#D7CCC8"));
+        header.setForeground(Color.decode("#3E2723"));
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,19 +73,255 @@ public class Menu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        chkCompletada = new javax.swing.JCheckBox();
+        btnGuardar = new javax.swing.JButton();
+        btnComplete = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaTareas = new javax.swing.JTable();
+        comboPrioridad = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        bg.setBackground(new java.awt.Color(248, 244, 239));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(131, 103, 93));
+        jPanel1.setPreferredSize(new java.awt.Dimension(300, 720));
+
+        jLabel1.setBackground(new java.awt.Color(255, 248, 240));
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 248, 240));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SeiTasks");
+        jLabel1.setToolTipText("");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 248, 240));
+        jLabel6.setText("Tareas");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(79, 79, 79)
+                .addComponent(jLabel6)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 720));
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(62, 39, 35));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Tareas");
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 1010, -1));
+
+        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre.setText("Nombre");
+        txtNombre.setToolTipText("");
+        txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 160, 20));
+
+        chkCompletada.setBackground(new java.awt.Color(255, 255, 255));
+        chkCompletada.setText("Completa");
+        chkCompletada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chkCompletada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkCompletadaActionPerformed(evt);
+            }
+        });
+        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
+
+        btnGuardar.setBackground(new java.awt.Color(93, 64, 55));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
+
+        btnComplete.setBackground(new java.awt.Color(93, 64, 55));
+        btnComplete.setForeground(new java.awt.Color(255, 255, 255));
+        btnComplete.setText("Completada");
+        btnComplete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnComplete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteActionPerformed(evt);
+            }
+        });
+        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, -1));
+
+        delete.setBackground(new java.awt.Color(93, 64, 55));
+        delete.setForeground(new java.awt.Color(255, 255, 255));
+        delete.setText("Eliminar");
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+        bg.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+
+        tablaTareas.setBackground(new java.awt.Color(253, 249, 246));
+        tablaTareas.setForeground(new java.awt.Color(78, 52, 46));
+        tablaTareas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tablaTareas.setGridColor(new java.awt.Color(188, 170, 164));
+        tablaTareas.setSelectionBackground(new java.awt.Color(237, 224, 212));
+        tablaTareas.setSelectionForeground(new java.awt.Color(62, 39, 35));
+        jScrollPane2.setViewportView(tablaTareas);
+
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, -1, -1));
+
+        comboPrioridad.setBackground(new java.awt.Color(255, 255, 255));
+        comboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPrioridad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboPrioridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPrioridadActionPerformed(evt);
+            }
+        });
+        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(62, 39, 35));
+        jLabel3.setText("Creacion de Tareas");
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String nombre = txtNombre.getText();
+        int prioridad = Integer.parseInt((String) comboPrioridad.getSelectedItem());
+        boolean completada = chkCompletada.isSelected();
+
+        Tarea tarea = new Tarea(nombre, prioridad, completada);
+
+        try {
+            TareaManager.agregarTarea(tarea);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        cargarTareasEnTabla();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
+
+        int filaSeleccionada = tablaTareas.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            boolean exito = false;
+            try {
+                exito = TareaManager.marcarCompletadaIndice(filaSeleccionada);
+            } catch (IOException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (exito) {
+                JOptionPane.showMessageDialog(this, "Tarea marcada como completada.");
+                cargarTareasEnTabla(); // refrescar
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo marcar la tarea.");
+            }
+     } else {
+            JOptionPane.showMessageDialog(this, "Selecciona una tarea de la tabla.");
+    }   
+        cargarTareasEnTabla();
+    }//GEN-LAST:event_btnCompleteActionPerformed
+
+    private void chkCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkCompletadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkCompletadaActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        String nombre = txtNombre.getText();
+
+        boolean exito = false;
+        try {
+            exito = TareaManager.eliminarTareaNombre(nombre);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "Tarea eliminada con éxito.");
+        } else {
+        JOptionPane.showMessageDialog(this, "No se encontró una tarea con ese nombre.");
+        }
+        
+        cargarTareasEnTabla();
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void comboPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPrioridadActionPerformed
+        
+    }//GEN-LAST:event_comboPrioridadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg;
+    private javax.swing.JButton btnComplete;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JCheckBox chkCompletada;
+    private javax.swing.JComboBox<String> comboPrioridad;
+    private javax.swing.JButton delete;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaTareas;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
