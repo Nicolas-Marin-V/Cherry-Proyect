@@ -4,17 +4,23 @@
  */
 package com.seitasks.Pomodoro;
 
-/**
- *
- * @author Nicolas Marin
- */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 public class Pomodoro extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Pomodoro
-     */
+    private javax.swing.Timer timer;
+    private int tiempoRestante; // en segundos
+    private boolean enEjecucion;
+    private boolean modoEstudio = true;
+    
+    
     public Pomodoro() {
         initComponents();
+        configurarComponentes();
+        configurarTemporizador();
+        configurarTiempoInicial();
+        actualizarTiempoDisplay();
     }
 
     /**
@@ -26,19 +32,203 @@ public class Pomodoro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        SpinnerEstudio = new javax.swing.JSpinner();
+        labelEstudio = new javax.swing.JLabel();
+        labelDescanso = new javax.swing.JLabel();
+        spinnerDescanso = new javax.swing.JSpinner();
+        btnCambiarModo = new javax.swing.JButton();
+        labelTiempo = new javax.swing.JLabel();
+        btnIniciar = new javax.swing.JButton();
+        btnPausar = new javax.swing.JButton();
+        btnReiniciar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
+        labelEstudio.setBackground(new java.awt.Color(255, 51, 51));
+        labelEstudio.setText("Estudio(min): ");
+
+        labelDescanso.setText("Descanso(Min): ");
+
+        btnCambiarModo.setText("Cambiar a descanso");
+        btnCambiarModo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarModoActionPerformed(evt);
+            }
+        });
+
+        labelTiempo.setBackground(new java.awt.Color(255, 51, 102));
+        labelTiempo.setFont(new java.awt.Font("Dialog", 0, 72)); // NOI18N
+        labelTiempo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTiempo.setText("60:00");
+
+        btnIniciar.setText("Iniciar");
+
+        btnPausar.setText("Pausar");
+
+        btnReiniciar.setText("Reiniciar");
+
+        jButton1.setText("Menu");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(labelEstudio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SpinnerEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIniciar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btnPausar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addComponent(btnReiniciar)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton1)
+                        .addGap(133, 133, 133))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelDescanso)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spinnerDescanso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnCambiarModo)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SpinnerEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEstudio)
+                    .addComponent(labelDescanso)
+                    .addComponent(spinnerDescanso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCambiarModo))
+                .addGap(87, 87, 87)
+                .addComponent(labelTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciar)
+                    .addComponent(btnPausar)
+                    .addComponent(btnReiniciar)
+                    .addComponent(jButton1))
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCambiarModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarModoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCambiarModoActionPerformed
+    
+
+    private void configurarComponentes() {
+        SpinnerEstudio.setModel(new SpinnerNumberModel(60, 1, 120, 1)); 
+        spinnerDescanso.setModel(new SpinnerNumberModel(20, 1, 60, 1)); 
+
+        
+        btnCambiarModo.addActionListener(this::cambiarModo);
+
+        
+        btnIniciar.addActionListener(this::iniciarTemporizador);
+        btnPausar.addActionListener(this::pausarTemporizador);
+
+        btnReiniciar.setText("Reiniciar");
+        btnReiniciar.addActionListener(this::reiniciarTemporizador);
+
+        btnPausar.setEnabled(false);
+    }
+
+    private void configurarTemporizador() {
+        timer = new Timer(1000, e -> {
+            if (tiempoRestante > 0) {
+                tiempoRestante--;
+                actualizarTiempoDisplay();
+            } else {
+                finalizarPeriodo();
+            }
+        });
+    }
+
+    private void iniciarTemporizador(ActionEvent evt) {
+        if (!enEjecucion) {
+            timer.start();
+            enEjecucion = true;
+            btnIniciar.setEnabled(false);
+            btnPausar.setEnabled(true);
+        }
+    }
+
+    private void pausarTemporizador(ActionEvent evt) {
+        if (enEjecucion) {
+            timer.stop();
+            enEjecucion = false;
+            btnIniciar.setEnabled(true);
+            btnPausar.setEnabled(false);
+        }
+    }
+
+    private void reiniciarTemporizador(ActionEvent evt) {
+        timer.stop();
+        enEjecucion = false;
+        configurarTiempoInicial();
+        actualizarTiempoDisplay();
+        btnIniciar.setEnabled(true);
+        btnPausar.setEnabled(false);
+    }
+
+    private void cambiarModo(ActionEvent evt) {
+        modoEstudio = !modoEstudio;
+        configurarTiempoInicial();
+        actualizarTiempoDisplay();
+        btnCambiarModo.setText(modoEstudio ? "Cambiar a descanso" : "Cambiar a estudio");
+    }
+
+    private void configurarTiempoInicial() {
+        int minutos = modoEstudio ? (int) SpinnerEstudio.getValue() : (int) spinnerDescanso.getValue();
+        tiempoRestante = minutos * 60;
+    }
+
+    private void actualizarTiempoDisplay() {
+        int minutos = tiempoRestante / 60;
+        int segundos = tiempoRestante % 60;
+        labelTiempo.setText(String.format("%02d:%02d", minutos, segundos));
+    }
+
+    private void finalizarPeriodo() {
+        timer.stop();
+        enEjecucion = false;
+        btnIniciar.setEnabled(true);
+        btnPausar.setEnabled(false);
+
+        String mensaje = modoEstudio ?
+                "¡Tiempo de estudio completado! Toma un descanso." :
+                "¡Descanso completado! Es hora de estudiar.";
+
+        JOptionPane.showMessageDialog(this, mensaje, "Periodo Finalizado", JOptionPane.INFORMATION_MESSAGE);
+
+        // Cambia automáticamente al siguiente modo
+        cambiarModo(null);
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner SpinnerEstudio;
+    private javax.swing.JButton btnCambiarModo;
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnPausar;
+    private javax.swing.JButton btnReiniciar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel labelDescanso;
+    private javax.swing.JLabel labelEstudio;
+    private javax.swing.JLabel labelTiempo;
+    private javax.swing.JSpinner spinnerDescanso;
     // End of variables declaration//GEN-END:variables
 }
