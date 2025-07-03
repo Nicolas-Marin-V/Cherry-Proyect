@@ -15,8 +15,9 @@ public class Test extends javax.swing.JPanel {
      */
     public Test() {
             initComponents();
+            int i = 1;
 
-            Encuesta encu = new Encuesta();
+            Encuesta encu = new Encuesta(i);
             encu.setSize(560, 658);
             encu.setLocation(0, 0);
 

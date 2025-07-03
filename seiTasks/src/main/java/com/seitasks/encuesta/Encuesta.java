@@ -49,8 +49,9 @@ public class Encuesta extends javax.swing.JPanel {
        
     
 
-    public Encuesta() {
+    public Encuesta(int uso) {
         initComponents();
+        programa = uso;
     }
     
 
@@ -254,9 +255,10 @@ public class Encuesta extends javax.swing.JPanel {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
         hora = myDateObj.format(myFormatObj);
         Escritor.escribirResultados(productivo, metas, satisfecho, metodo, estres,hora,programa);
+        javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
         break;
     default:
-     LabelPregunta.setText("Debugging: Final");
+     LabelPregunta.setText("Error critico la ventana no se cerro");
   }
        contador++;
     }//GEN-LAST:event_BotonSiguienteActionPerformed

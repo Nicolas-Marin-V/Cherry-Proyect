@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.seitasks.FlashCards;
+import com.seitasks.encuesta.MainEncuesta;
 import java.io.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class FalshCardWindow extends javax.swing.JPanel {
     
@@ -34,6 +36,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         Preguntatxt = new javax.swing.JTextField();
         Respuestatxt = new javax.swing.JTextField();
         Add = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         ShowFlashcard = new javax.swing.JPanel();
         Pregunta = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -84,6 +87,13 @@ public class FalshCardWindow extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FlashCardAddLayout = new javax.swing.GroupLayout(FlashCardAdd);
         FlashCardAdd.setLayout(FlashCardAddLayout);
         FlashCardAddLayout.setHorizontalGroup(
@@ -105,8 +115,12 @@ public class FalshCardWindow extends javax.swing.JPanel {
                         .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
-                        .addGap(0, 61, Short.MAX_VALUE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FlashCardAddLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(56, 56, 56))
         );
         FlashCardAddLayout.setVerticalGroup(
             FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +137,9 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 .addComponent(Respuestatxt, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(Add)
-                .addGap(52, 52, 52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(17, 17, 17))
         );
 
         Background.add(FlashCardAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 200, 380));
@@ -191,7 +207,6 @@ public class FalshCardWindow extends javax.swing.JPanel {
         ShowFlashcard.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         Siguiente.setText("Siguiente");
-        Siguiente.setActionCommand("Siguiente");
         Siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SiguienteActionPerformed(evt);
@@ -329,6 +344,21 @@ public class FalshCardWindow extends javax.swing.JPanel {
         mostrarPrevious();
     }//GEN-LAST:event_AnteriorActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int response = JOptionPane.showConfirmDialog(
+            this,
+            "¿Quieres registrar tu sesión?",
+            "Registrar Sesión",
+            JOptionPane.YES_NO_OPTION
+        );
+        
+        if (response == JOptionPane.YES_OPTION) {
+            MainEncuesta.main(1);
+        } else if (response == JOptionPane.NO_OPTION) {
+            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+        }         
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
@@ -342,6 +372,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
     private javax.swing.JTextArea RespuestatxtArea;
     private javax.swing.JPanel ShowFlashcard;
     private javax.swing.JButton Siguiente;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

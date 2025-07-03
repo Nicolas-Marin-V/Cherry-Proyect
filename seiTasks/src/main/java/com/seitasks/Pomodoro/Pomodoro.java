@@ -5,7 +5,7 @@
 package com.seitasks.Pomodoro;
 
 import javax.swing.*;
-import java.awt.*;
+import com.seitasks.encuesta.MainEncuesta;
 import java.awt.event.ActionEvent;
 public class Pomodoro extends javax.swing.JPanel {
 
@@ -67,6 +67,11 @@ public class Pomodoro extends javax.swing.JPanel {
         btnReiniciar.setText("Reiniciar");
 
         jButton1.setText("Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -125,6 +130,22 @@ public class Pomodoro extends javax.swing.JPanel {
     private void btnCambiarModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarModoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCambiarModoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         int response = JOptionPane.showConfirmDialog(
+            this,
+            "¿Quieres registrar tu sesión?",
+            "Registrar Sesión",
+            JOptionPane.YES_NO_OPTION
+        );
+        
+        if (response == JOptionPane.YES_OPTION) {
+            MainEncuesta.main(0);
+        } else if (response == JOptionPane.NO_OPTION) {
+            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     
 
     private void configurarComponentes() {
