@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.seitasks.Menu;
+package ListaDeTareas;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -82,11 +82,12 @@ public class Menu extends javax.swing.JPanel {
         chkCompletada = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
         btnComplete = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
+        BotonMenu = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTareas = new javax.swing.JTable();
         comboPrioridad = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        delete1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
@@ -106,7 +107,7 @@ public class Menu extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 248, 240));
         jLabel6.setText("Tareas");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,10 +138,9 @@ public class Menu extends javax.swing.JPanel {
         jLabel2.setText("Tareas");
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 1010, -1));
 
-        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setText("Nombre");
         txtNombre.setToolTipText("");
-        txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -150,7 +150,7 @@ public class Menu extends javax.swing.JPanel {
 
         chkCompletada.setBackground(new java.awt.Color(255, 255, 255));
         chkCompletada.setText("Completa");
-        chkCompletada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chkCompletada.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         chkCompletada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkCompletadaActionPerformed(evt);
@@ -161,7 +161,7 @@ public class Menu extends javax.swing.JPanel {
         btnGuardar.setBackground(new java.awt.Color(93, 64, 55));
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -172,7 +172,7 @@ public class Menu extends javax.swing.JPanel {
         btnComplete.setBackground(new java.awt.Color(93, 64, 55));
         btnComplete.setForeground(new java.awt.Color(255, 255, 255));
         btnComplete.setText("Completada");
-        btnComplete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnComplete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteActionPerformed(evt);
@@ -180,16 +180,16 @@ public class Menu extends javax.swing.JPanel {
         });
         bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, -1));
 
-        delete.setBackground(new java.awt.Color(93, 64, 55));
-        delete.setForeground(new java.awt.Color(255, 255, 255));
-        delete.setText("Eliminar");
-        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        delete.addActionListener(new java.awt.event.ActionListener() {
+        BotonMenu.setBackground(new java.awt.Color(93, 64, 55));
+        BotonMenu.setForeground(new java.awt.Color(255, 255, 255));
+        BotonMenu.setText("Menu");
+        BotonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BotonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
+                BotonMenuActionPerformed(evt);
             }
         });
-        bg.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+        bg.add(BotonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
 
         tablaTareas.setBackground(new java.awt.Color(253, 249, 246));
         tablaTareas.setForeground(new java.awt.Color(78, 52, 46));
@@ -211,9 +211,8 @@ public class Menu extends javax.swing.JPanel {
 
         bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, -1, -1));
 
-        comboPrioridad.setBackground(new java.awt.Color(255, 255, 255));
         comboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboPrioridad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboPrioridad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         comboPrioridad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPrioridadActionPerformed(evt);
@@ -224,6 +223,17 @@ public class Menu extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(62, 39, 35));
         jLabel3.setText("Creacion de Tareas");
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
+
+        delete1.setBackground(new java.awt.Color(93, 64, 55));
+        delete1.setForeground(new java.awt.Color(255, 255, 255));
+        delete1.setText("Eliminar");
+        delete1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete1ActionPerformed(evt);
+            }
+        });
+        bg.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -284,7 +294,15 @@ public class Menu extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkCompletadaActionPerformed
 
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+    private void BotonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenuActionPerformed
+        javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+    }//GEN-LAST:event_BotonMenuActionPerformed
+
+    private void comboPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPrioridadActionPerformed
+        
+    }//GEN-LAST:event_comboPrioridadActionPerformed
+
+    private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
         String nombre = txtNombre.getText();
 
         boolean exito = false;
@@ -301,20 +319,17 @@ public class Menu extends javax.swing.JPanel {
         }
         
         cargarTareasEnTabla();
-    }//GEN-LAST:event_deleteActionPerformed
-
-    private void comboPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPrioridadActionPerformed
-        
-    }//GEN-LAST:event_comboPrioridadActionPerformed
+    }//GEN-LAST:event_delete1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonMenu;
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnComplete;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JCheckBox chkCompletada;
     private javax.swing.JComboBox<String> comboPrioridad;
-    private javax.swing.JButton delete;
+    private javax.swing.JButton delete1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

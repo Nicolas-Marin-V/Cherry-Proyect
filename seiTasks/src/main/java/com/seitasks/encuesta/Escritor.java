@@ -8,7 +8,7 @@ public class Escritor {
 
     public static void escribirResultados(int productividad, int alcance, int satisfaccion, int importancia, int estres, String hora, int programa) {
         try {
-            CSVWriter csvWriter = new CSVWriter(new FileWriter("src/main/java/com/seitasks/encuesta/resultados.csv", true)); 
+            CSVWriter csvWriter = new CSVWriter(new FileWriter("resultados.csv", true)); 
 
             String[] fila = new String[7];
             fila[0] = String.valueOf(productividad);

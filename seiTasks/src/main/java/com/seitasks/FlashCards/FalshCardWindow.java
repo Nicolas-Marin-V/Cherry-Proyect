@@ -354,6 +354,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         
         if (response == JOptionPane.YES_OPTION) {
             MainEncuesta.main(1);
+            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
         } else if (response == JOptionPane.NO_OPTION) {
             javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
         }         

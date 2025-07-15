@@ -1,4 +1,4 @@
-package com.seitasks.Menu;
+package ListaDeTareas;
 import javax.swing.JFrame;
 
 /**
@@ -11,7 +11,7 @@ public class MainTareas {
 
         ventana.setContentPane(new Menu());
         
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.pack(); 
         ventana.setLocationRelativeTo(null); 
         ventana.setVisible(true); 

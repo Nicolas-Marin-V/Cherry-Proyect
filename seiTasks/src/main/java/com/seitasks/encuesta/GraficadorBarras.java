@@ -8,7 +8,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.util.List;
 
-public class GraficadorBarras {
+public class GraficadorBarras extends JFrame{
 
     public static void mostrarGraficoBarras(List<RespuestaEncuesta> respuestas) {
         if (respuestas == null || respuestas.isEmpty()) {

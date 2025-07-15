@@ -1,8 +1,9 @@
-package com.seitasks.Menu;
+package ListaDeTareas;
 /**
  *
  * @author Gabriel
  */
+import ListaDeTareas.Tarea;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;

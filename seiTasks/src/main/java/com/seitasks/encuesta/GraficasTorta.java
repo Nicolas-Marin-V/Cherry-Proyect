@@ -11,7 +11,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class GraficasTorta extends ApplicationFrame {
+public class GraficasTorta extends JFrame {
 
     public GraficasTorta(String title, JFreeChart chart) {
         super(title);
