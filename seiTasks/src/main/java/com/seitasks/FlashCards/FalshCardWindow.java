@@ -4,9 +4,11 @@
  */
 package com.seitasks.FlashCards;
 import com.seitasks.encuesta.MainEncuesta;
+import java.awt.Color;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class FalshCardWindow extends javax.swing.JPanel {
     
@@ -14,9 +16,14 @@ public class FalshCardWindow extends javax.swing.JPanel {
     private ArrayList<Flashcard> arrayFlashcards = new ArrayList<>();
     private int indiceActual = -1;
     private static final String ARCHIVO_DATOS = "flashcards.dat";
+    private BinarySearchTree<Flashcard> arbolFlashcards = new BinarySearchTree<>();
+    private boolean mostrandoPregunta = true;
     
     public FalshCardWindow() {
         initComponents();
+        jScrollPane1.setVisible(true);   // Pregunta visible
+        jScrollPane2.setVisible(false); // Respuesta oculta
+        mostrandoPregunta = true;
     }
 
     /**
@@ -29,7 +36,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        FlashCardAdd = new javax.swing.JPanel();
+        FlashCardAdd = new com.seitasks.FlashCards.GradientPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -37,201 +44,349 @@ public class FalshCardWindow extends javax.swing.JPanel {
         Respuestatxt = new javax.swing.JTextField();
         Add = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         ShowFlashcard = new javax.swing.JPanel();
-        Pregunta = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        PreguntatxtArea = new javax.swing.JTextArea();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        RespuestatxtArea = new javax.swing.JTextArea();
         Anterior = new javax.swing.JButton();
         Siguiente = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        RespuestatxtArea = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PreguntatxtArea = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        PostOrderButton = new javax.swing.JButton();
+        LinkedButton = new javax.swing.JToggleButton();
+        InOrderButton = new javax.swing.JButton();
+        PreOrderButton = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(640, 360));
+        setPreferredSize(new java.awt.Dimension(960, 540));
 
-        Background.setBackground(new java.awt.Color(248, 244, 239));
+        Background.setBackground(new java.awt.Color(18, 18, 18));
+        Background.setMinimumSize(new java.awt.Dimension(950, 540));
+        Background.setPreferredSize(new java.awt.Dimension(950, 540));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        FlashCardAdd.setBackground(new java.awt.Color(0, 0, 0));
+        FlashCardAdd.setBackground(new java.awt.Color(30, 30, 30));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setBackground(new java.awt.Color(237, 237, 237));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Flash Card");
+        jLabel3.setText("FLASH CARD");
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setBackground(new java.awt.Color(176, 176, 176));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Pregunta:");
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Respuesta:");
 
+        Preguntatxt.setBackground(new java.awt.Color(42, 42, 42));
+        Preguntatxt.setForeground(new java.awt.Color(255, 255, 255));
+        Preguntatxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        Preguntatxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Preguntatxt.setCaretColor(new java.awt.Color(255, 255, 255));
         Preguntatxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PreguntatxtActionPerformed(evt);
             }
         });
 
+        Respuestatxt.setBackground(new java.awt.Color(42, 42, 42));
+        Respuestatxt.setForeground(new java.awt.Color(255, 255, 255));
+        Respuestatxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        Respuestatxt.setToolTipText("");
+        Respuestatxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Respuestatxt.setCaretColor(new java.awt.Color(255, 255, 255));
         Respuestatxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RespuestatxtActionPerformed(evt);
             }
         });
 
-        Add.setBackground(new java.awt.Color(51, 0, 51));
+        Add.setBackground(new java.awt.Color(94, 53, 177));
+        Add.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Add.setForeground(new java.awt.Color(255, 255, 255));
         Add.setText("Agregar");
+        Add.setBorder(null);
+        Add.setPreferredSize(new java.awt.Dimension(54, 24));
+        Add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AddMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AddMouseExited(evt);
+            }
+        });
         Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(42, 42, 42));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Menu");
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\esteb\\Downloads\\SeitaskPng (2).png")); // NOI18N
+
         javax.swing.GroupLayout FlashCardAddLayout = new javax.swing.GroupLayout(FlashCardAdd);
         FlashCardAdd.setLayout(FlashCardAddLayout);
         FlashCardAddLayout.setHorizontalGroup(
             FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FlashCardAddLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FlashCardAddLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Preguntatxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Respuestatxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Add, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(FlashCardAddLayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Preguntatxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FlashCardAddLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)))
+                        .addGap(14, 14, 14))
                     .addGroup(FlashCardAddLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(0, 68, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FlashCardAddLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(56, 56, 56))
+                        .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                            .addComponent(Respuestatxt, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(17, Short.MAX_VALUE))))
         );
         FlashCardAddLayout.setVerticalGroup(
             FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FlashCardAddLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FlashCardAddLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel3)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FlashCardAddLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Preguntatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Preguntatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(Respuestatxt, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(Add)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(17, 17, 17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Respuestatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        Background.add(FlashCardAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 200, 380));
+        Background.add(FlashCardAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 540));
 
-        ShowFlashcard.setBackground(new java.awt.Color(0, 0, 0));
+        ShowFlashcard.setBackground(new java.awt.Color(18, 18, 18));
         ShowFlashcard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Pregunta.setBackground(new java.awt.Color(51, 0, 51));
-
-        PreguntatxtArea.setBackground(new java.awt.Color(204, 204, 204));
-        PreguntatxtArea.setColumns(20);
-        PreguntatxtArea.setRows(5);
-        jScrollPane1.setViewportView(PreguntatxtArea);
-
-        javax.swing.GroupLayout PreguntaLayout = new javax.swing.GroupLayout(Pregunta);
-        Pregunta.setLayout(PreguntaLayout);
-        PreguntaLayout.setHorizontalGroup(
-            PreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PreguntaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        PreguntaLayout.setVerticalGroup(
-            PreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PreguntaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        ShowFlashcard.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 390, -1));
-
-        jPanel5.setBackground(new java.awt.Color(51, 0, 51));
-
-        RespuestatxtArea.setColumns(20);
-        RespuestatxtArea.setRows(5);
-        jScrollPane2.setViewportView(RespuestatxtArea);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        ShowFlashcard.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 390, 110));
-
+        Anterior.setBackground(new java.awt.Color(42, 42, 42));
         Anterior.setText("Anterior");
+        Anterior.setBorder(null);
+        Anterior.setBorderPainted(false);
         Anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AnteriorActionPerformed(evt);
             }
         });
-        ShowFlashcard.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        ShowFlashcard.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 60, 30));
 
+        Siguiente.setBackground(new java.awt.Color(42, 42, 42));
         Siguiente.setText("Siguiente");
+        Siguiente.setBorder(null);
+        Siguiente.setBorderPainted(false);
         Siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SiguienteActionPerformed(evt);
             }
         });
-        ShowFlashcard.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
+        ShowFlashcard.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 60, 30));
 
-        Background.add(ShowFlashcard, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 430, 330));
+        RespuestatxtArea.setBackground(new java.awt.Color(62, 29, 87));
+        RespuestatxtArea.setColumns(20);
+        RespuestatxtArea.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        RespuestatxtArea.setForeground(new java.awt.Color(255, 255, 255));
+        RespuestatxtArea.setLineWrap(true);
+        RespuestatxtArea.setRows(5);
+        RespuestatxtArea.setBorder(null);
+        RespuestatxtArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RespuestatxtAreaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(RespuestatxtArea);
+
+        ShowFlashcard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 600, 320));
+
+        PreguntatxtArea.setBackground(new java.awt.Color(62, 30, 104));
+        PreguntatxtArea.setColumns(20);
+        PreguntatxtArea.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        PreguntatxtArea.setForeground(new java.awt.Color(255, 255, 255));
+        PreguntatxtArea.setLineWrap(true);
+        PreguntatxtArea.setRows(5);
+        PreguntatxtArea.setBorder(null);
+        PreguntatxtArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PreguntatxtAreaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(PreguntatxtArea);
+
+        ShowFlashcard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 600, 320));
+
+        jPanel1.setBackground(new java.awt.Color(30, 30, 30));
+
+        PostOrderButton.setBackground(new java.awt.Color(42, 42, 42));
+        PostOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PostOrderButton.setForeground(new java.awt.Color(255, 255, 255));
+        PostOrderButton.setText("PostOrder");
+        PostOrderButton.setBorder(null);
+        PostOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PostOrderButtonActionPerformed(evt);
+            }
+        });
+
+        LinkedButton.setBackground(new java.awt.Color(42, 42, 42));
+        LinkedButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LinkedButton.setForeground(new java.awt.Color(255, 255, 255));
+        LinkedButton.setText("Modo Lista");
+        LinkedButton.setBorder(null);
+        LinkedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LinkedButtonActionPerformed(evt);
+            }
+        });
+
+        InOrderButton.setBackground(new java.awt.Color(42, 42, 42));
+        InOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        InOrderButton.setForeground(new java.awt.Color(255, 255, 255));
+        InOrderButton.setText("InOrder");
+        InOrderButton.setBorder(null);
+        InOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InOrderButtonActionPerformed(evt);
+            }
+        });
+
+        PreOrderButton.setBackground(new java.awt.Color(42, 42, 42));
+        PreOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PreOrderButton.setForeground(new java.awt.Color(255, 255, 255));
+        PreOrderButton.setText("PreOrder");
+        PreOrderButton.setBorder(null);
+        PreOrderButton.setBorderPainted(false);
+        PreOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PreOrderButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addComponent(LinkedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PostOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PreOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LinkedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PreOrderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(PostOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        ShowFlashcard.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 670, 70));
+
+        Background.add(ShowFlashcard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 670, 540));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+    
     private void configurarEventos() {
         Add.addActionListener(e -> agregarTarjeta());
         Anterior.addActionListener(e -> mostrarPrevious());
         Siguiente.addActionListener(e -> mostrarNext());
     }
+    private void reconstruirArbolDesdeLista() {
+        arbolFlashcards = new BinarySearchTree<>();
+
+        Node<Flashcard> actual = listaFlashcards.Head;
+        while (actual != null) {
+            arbolFlashcards.insert(actual.Dato);
+            actual = actual.nextNode;
+        }
+    }
+
+    private void mostrarRecorrido(String tipo) {
+        ArrayList<Flashcard> recorrido = new ArrayList<>();
+        reconstruirArbolDesdeLista();
+
+        switch (tipo) {
+            case "pre":
+                arbolFlashcards.fillPreOrder(recorrido);
+                break;
+            case "in":
+                arbolFlashcards.fillInOrder(recorrido);
+                break;
+            case "post":
+                arbolFlashcards.fillPostOrder(recorrido);
+                break;
+            default:
+                return;
+        }
+
+        arrayFlashcards.clear();
+        arrayFlashcards.addAll(recorrido);
+
+        if (!arrayFlashcards.isEmpty()) {
+            indiceActual = 0;
+            mostrarCard(indiceActual);
+        } else {
+            indiceActual = -1;
+            mostrarCard(-1);
+        }
+
+        updateButtons();
+    }
+
+
     private void saveFlashcards() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_DATOS))) {
             oos.writeObject(listaFlashcards);
@@ -321,8 +476,16 @@ public class FalshCardWindow extends javax.swing.JPanel {
     }
      private void updateButtons() {
         boolean hayTarjetas = !arrayFlashcards.isEmpty();
-        Anterior.setEnabled(hayTarjetas && indiceActual > 0);
-        Siguiente.setEnabled(hayTarjetas && indiceActual < arrayFlashcards.size() - 1);
+
+    boolean anteriorActivo = hayTarjetas && indiceActual > 0;
+    boolean siguienteActivo = hayTarjetas && indiceActual < arrayFlashcards.size() - 1;
+
+    Anterior.setEnabled(anteriorActivo);
+    Siguiente.setEnabled(siguienteActivo);
+
+    // Estas líneas fuerzan el color cada vez que se actualiza el botón
+    Anterior.setForeground(anteriorActivo ? Color.WHITE : new Color(150, 150, 150));      // gris claro si desactivado
+    Siguiente.setForeground(siguienteActivo ? Color.WHITE : new Color(150, 150, 150));
     }
     private void RespuestatxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RespuestatxtActionPerformed
         agregarTarjeta();
@@ -338,6 +501,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         agregarTarjeta();
+        
     }//GEN-LAST:event_AddActionPerformed
 
     private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
@@ -360,13 +524,107 @@ public class FalshCardWindow extends javax.swing.JPanel {
         }         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void LinkedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LinkedButtonActionPerformed
+        arrayFlashcards.clear();
+        Node<Flashcard> current = listaFlashcards.Head;
+        while (current != null) {
+            arrayFlashcards.add(current.Dato);
+            current = current.nextNode;
+        }
+        if (!arrayFlashcards.isEmpty()) {
+            indiceActual = 0;
+            mostrarCard(indiceActual);
+        } else {
+            indiceActual = -1;
+            mostrarCard(-1);
+        }
+        updateButtons();
+    }//GEN-LAST:event_LinkedButtonActionPerformed
+
+    private void PreOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreOrderButtonActionPerformed
+        mostrarRecorrido("pre");
+    }//GEN-LAST:event_PreOrderButtonActionPerformed
+
+    private void InOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InOrderButtonActionPerformed
+        mostrarRecorrido("in");
+    }//GEN-LAST:event_InOrderButtonActionPerformed
+
+    private void PostOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostOrderButtonActionPerformed
+         mostrarRecorrido("post");
+    }//GEN-LAST:event_PostOrderButtonActionPerformed
+
+    private void AddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseEntered
+        Add.setBackground(Color.decode("#542688"));
+    }//GEN-LAST:event_AddMouseEntered
+
+    private void AddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseExited
+        Add.setBackground(Color.decode("#5E35B1"));
+    }//GEN-LAST:event_AddMouseExited
+
+    private void PreguntatxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PreguntatxtAreaMouseClicked
+        if (mostrandoPregunta) {
+            iniciarFlipAnimacion();
+        }
+    }//GEN-LAST:event_PreguntatxtAreaMouseClicked
+
+    private void RespuestatxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RespuestatxtAreaMouseClicked
+        if (!mostrandoPregunta) {
+            iniciarFlipAnimacion();
+        }
+    }//GEN-LAST:event_RespuestatxtAreaMouseClicked
+    
+
+private void iniciarFlipAnimacion() {
+    Timer timer = new Timer(10, null);  // animación por pasos
+    final int[] frame = {0};
+    final int totalFrames = 20;
+
+    timer.addActionListener(e -> {
+        frame[0]++;
+        double scale = 1 - Math.abs((frame[0] - totalFrames / 2.0) / (totalFrames / 2.0));
+        float scaleFactor = (float) scale;
+
+        int originalWidth = 600;  // Asegúrate de usar tu tamaño real de los ScrollPane
+        int scaledWidth = (int) (originalWidth * scaleFactor);
+
+        if (mostrandoPregunta) {
+            jScrollPane1.setSize(scaledWidth, jScrollPane1.getHeight());
+        } else {
+            jScrollPane2.setSize(scaledWidth, jScrollPane2.getHeight());
+        }
+
+        if (frame[0] == totalFrames / 2) {
+            // Cambiar la visibilidad entre ambas caras
+            mostrandoPregunta = !mostrandoPregunta;
+            jScrollPane1.setVisible(mostrandoPregunta);
+            jScrollPane2.setVisible(!mostrandoPregunta);
+        }
+
+        if (frame[0] >= totalFrames) {
+            // Restaurar tamaños y detener animación
+            jScrollPane1.setSize(originalWidth, jScrollPane1.getHeight());
+            jScrollPane2.setSize(originalWidth, jScrollPane2.getHeight());
+            timer.stop();
+        }
+
+        ShowFlashcard.revalidate();
+        ShowFlashcard.repaint();
+    });
+
+    timer.start();
+}
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
     private javax.swing.JButton Anterior;
     private javax.swing.JPanel Background;
     private javax.swing.JPanel FlashCardAdd;
-    private javax.swing.JPanel Pregunta;
+    private javax.swing.JButton InOrderButton;
+    private javax.swing.JToggleButton LinkedButton;
+    private javax.swing.JButton PostOrderButton;
+    private javax.swing.JButton PreOrderButton;
     private javax.swing.JTextField Preguntatxt;
     private javax.swing.JTextArea PreguntatxtArea;
     private javax.swing.JTextField Respuestatxt;
@@ -374,10 +632,11 @@ public class FalshCardWindow extends javax.swing.JPanel {
     private javax.swing.JPanel ShowFlashcard;
     private javax.swing.JButton Siguiente;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

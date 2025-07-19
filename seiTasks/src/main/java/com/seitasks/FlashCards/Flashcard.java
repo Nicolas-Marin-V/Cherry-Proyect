@@ -1,8 +1,9 @@
 package com.seitasks.FlashCards;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 
-public class Flashcard implements Serializable {
+public class Flashcard implements Serializable, Comparable<Flashcard> {
     private static final long serialVersionUID = 1L;
     
     String Pregunta;
@@ -27,5 +28,11 @@ public class Flashcard implements Serializable {
 
     public void setRespuesta(String Respuesta) {
         this.Respuesta = Respuesta;
+    }
+
+
+    @Override
+    public int compareTo(Flashcard otra) {
+        return this.Pregunta.compareToIgnoreCase(otra.Pregunta);
     }
 }
