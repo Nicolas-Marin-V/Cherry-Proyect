@@ -23,7 +23,7 @@ public class Menu extends javax.swing.JPanel {
      */
     public Menu() {
         initComponents();
-        cargarTareasEnTabla(); // si lo usas
+        cargarTareasEnTabla();
         cargarPrioridades();
         
     }
@@ -74,9 +74,6 @@ public class Menu extends javax.swing.JPanel {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         chkCompletada = new javax.swing.JCheckBox();
@@ -89,54 +86,17 @@ public class Menu extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         delete1 = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1010, 720));
 
         bg.setBackground(new java.awt.Color(248, 244, 239));
+        bg.setPreferredSize(new java.awt.Dimension(1010, 720));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(131, 103, 93));
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 720));
-
-        jLabel1.setBackground(new java.awt.Color(255, 248, 240));
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 248, 240));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SeiTasks");
-        jLabel1.setToolTipText("");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 248, 240));
-        jLabel6.setText("Tareas");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(79, 79, 79)
-                .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 720));
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(62, 39, 35));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Tareas");
-        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 1010, -1));
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, -1));
 
         txtNombre.setText("Nombre");
         txtNombre.setToolTipText("");
@@ -146,7 +106,7 @@ public class Menu extends javax.swing.JPanel {
                 txtNombreActionPerformed(evt);
             }
         });
-        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 160, 20));
+        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 160, 20));
 
         chkCompletada.setBackground(new java.awt.Color(255, 255, 255));
         chkCompletada.setText("Completa");
@@ -156,7 +116,7 @@ public class Menu extends javax.swing.JPanel {
                 chkCompletadaActionPerformed(evt);
             }
         });
-        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
+        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(93, 64, 55));
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,7 +127,7 @@ public class Menu extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
-        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
+        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
         btnComplete.setBackground(new java.awt.Color(93, 64, 55));
         btnComplete.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,7 +138,7 @@ public class Menu extends javax.swing.JPanel {
                 btnCompleteActionPerformed(evt);
             }
         });
-        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, -1));
+        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 580, -1, -1));
 
         BotonMenu.setBackground(new java.awt.Color(93, 64, 55));
         BotonMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,7 +149,7 @@ public class Menu extends javax.swing.JPanel {
                 BotonMenuActionPerformed(evt);
             }
         });
-        bg.add(BotonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
+        bg.add(BotonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
 
         tablaTareas.setBackground(new java.awt.Color(253, 249, 246));
         tablaTareas.setForeground(new java.awt.Color(78, 52, 46));
@@ -209,7 +169,7 @@ public class Menu extends javax.swing.JPanel {
         tablaTareas.setSelectionForeground(new java.awt.Color(62, 39, 35));
         jScrollPane2.setViewportView(tablaTareas);
 
-        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, -1, -1));
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
 
         comboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboPrioridad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -218,11 +178,11 @@ public class Menu extends javax.swing.JPanel {
                 comboPrioridadActionPerformed(evt);
             }
         });
-        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
+        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(62, 39, 35));
         jLabel3.setText("Creacion de Tareas");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         delete1.setBackground(new java.awt.Color(93, 64, 55));
         delete1.setForeground(new java.awt.Color(255, 255, 255));
@@ -233,13 +193,15 @@ public class Menu extends javax.swing.JPanel {
                 delete1ActionPerformed(evt);
             }
         });
-        bg.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+        bg.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,11 +292,8 @@ public class Menu extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkCompletada;
     private javax.swing.JComboBox<String> comboPrioridad;
     private javax.swing.JButton delete1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaTareas;
     private javax.swing.JTextField txtNombre;

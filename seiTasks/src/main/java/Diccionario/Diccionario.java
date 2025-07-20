@@ -106,12 +106,12 @@ public class Diccionario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         ButtonVolver = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        TextBoxBuscar = new javax.swing.JTextField();
+        ButtonNuevo = new javax.swing.JButton();
+        LabelBuscar = new javax.swing.JLabel();
+        BotonBuscar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListCatalogo = new javax.swing.JList<>();
-        BotonBuscar = new javax.swing.JToggleButton();
-        LabelBuscar = new javax.swing.JLabel();
-        ButtonNuevo = new javax.swing.JButton();
-        TextBoxBuscar = new javax.swing.JTextField();
 
         jPanel3.setBackground(new java.awt.Color(255, 251, 222));
         jPanel3.setForeground(new java.awt.Color(255, 251, 222));
@@ -258,48 +258,8 @@ public class Diccionario extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(70, 130, 169));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 580));
-
-        ListCatalogo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(ListCatalogo);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 260, 330));
-
-        BotonBuscar.setText("Buscar");
-        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(BotonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
-
-        LabelBuscar.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        LabelBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelBuscar.setText("Buscar concepto");
-        getContentPane().add(LabelBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 240, -1));
-
-        ButtonNuevo.setText("Nuevo concepto");
-        ButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonNuevoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(ButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 140, -1));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TextBoxBuscar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         TextBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -307,7 +267,48 @@ public class Diccionario extends javax.swing.JFrame {
                 TextBoxBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(TextBoxBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 210, 30));
+        jPanel1.add(TextBoxBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 210, 30));
+
+        ButtonNuevo.setText("Nuevo concepto");
+        ButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonNuevoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 140, -1));
+
+        LabelBuscar.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        LabelBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelBuscar.setText("Buscar concepto");
+        jPanel1.add(LabelBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 240, -1));
+
+        BotonBuscar.setText("Buscar");
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BotonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+
+        ListCatalogo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jScrollPane1.setViewportView(ListCatalogo);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 260, 330));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

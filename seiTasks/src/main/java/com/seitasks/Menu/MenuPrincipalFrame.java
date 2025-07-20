@@ -5,17 +5,21 @@
 package com.seitasks.Menu;
 
 import Diccionario.Diccionario;
-import ListaDeTareas.MainTareas;
-import com.seitasks.FlashCards.MainCards;
-import com.seitasks.Pomodoro.MainPomodoro;
+import ListaDeTareas.Menu;
+import com.seitasks.FlashCards.FalshCardWindow;
+import com.seitasks.Pomodoro.Pomodoro;
 import com.seitasks.encuesta.GraficadorBarras;
 import com.seitasks.encuesta.GraficasTorta;
 import com.seitasks.encuesta.LectorEncuesta;
 import com.seitasks.encuesta.RespuestaEncuesta;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Nicolas Marin
+ * @author Gabriel Puentes
  */
 public class MenuPrincipalFrame extends javax.swing.JFrame {
     
@@ -38,150 +42,293 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        BotonEstadisticas = new javax.swing.JButton();
-        BotonCards = new javax.swing.JButton();
-        BotonLista = new javax.swing.JButton();
-        BotonPomodoro = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bg = new javax.swing.JPanel();
+        sideBar = new javax.swing.JPanel();
+        listaLabel = new javax.swing.JLabel();
+        flashCardLabel = new javax.swing.JLabel();
+        pomodoroLabel = new javax.swing.JLabel();
+        diccionarioLabel = new javax.swing.JLabel();
+        estadisticasLabel = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
+        contenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        bg.setBackground(new java.awt.Color(248, 244, 239));
+        bg.setMinimumSize(new java.awt.Dimension(1280, 720));
+        bg.setPreferredSize(new java.awt.Dimension(1280, 720));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BotonEstadisticas.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        BotonEstadisticas.setText("Estadisticas");
-        BotonEstadisticas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonEstadisticasActionPerformed(evt);
+        sideBar.setBackground(new java.awt.Color(131, 103, 93));
+        sideBar.setPreferredSize(new java.awt.Dimension(270, 720));
+
+        listaLabel.setBackground(new java.awt.Color(131, 103, 93));
+        listaLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        listaLabel.setForeground(new java.awt.Color(255, 248, 240));
+        listaLabel.setText(" Lista");
+        listaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listaLabel.setOpaque(true);
+        listaLabel.setPreferredSize(new java.awt.Dimension(270, 38));
+        listaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                listaLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                listaLabelMouseExited(evt);
             }
         });
 
-        BotonCards.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        BotonCards.setText("Cards");
-        BotonCards.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCardsActionPerformed(evt);
+        flashCardLabel.setBackground(new java.awt.Color(131, 103, 93));
+        flashCardLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        flashCardLabel.setForeground(new java.awt.Color(255, 248, 240));
+        flashCardLabel.setText(" Flash Cards");
+        flashCardLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flashCardLabel.setOpaque(true);
+        flashCardLabel.setPreferredSize(new java.awt.Dimension(270, 38));
+        flashCardLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flashCardLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                flashCardLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                flashCardLabelMouseExited(evt);
             }
         });
 
-        BotonLista.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        BotonLista.setText("Lista");
-        BotonLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonListaActionPerformed(evt);
+        pomodoroLabel.setBackground(new java.awt.Color(131, 103, 93));
+        pomodoroLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pomodoroLabel.setForeground(new java.awt.Color(255, 248, 240));
+        pomodoroLabel.setText(" Pomodoro");
+        pomodoroLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pomodoroLabel.setOpaque(true);
+        pomodoroLabel.setPreferredSize(new java.awt.Dimension(270, 38));
+        pomodoroLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pomodoroLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pomodoroLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pomodoroLabelMouseExited(evt);
             }
         });
 
-        BotonPomodoro.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        BotonPomodoro.setText("Pomodoro");
-        BotonPomodoro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonPomodoroActionPerformed(evt);
+        diccionarioLabel.setBackground(new java.awt.Color(131, 103, 93));
+        diccionarioLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        diccionarioLabel.setForeground(new java.awt.Color(255, 248, 240));
+        diccionarioLabel.setText(" Diccionario");
+        diccionarioLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        diccionarioLabel.setOpaque(true);
+        diccionarioLabel.setPreferredSize(new java.awt.Dimension(270, 38));
+        diccionarioLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diccionarioLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                diccionarioLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                diccionarioLabelMouseExited(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel1.setText("Menu");
-
-        jButton1.setFont(BotonEstadisticas.getFont());
-        jButton1.setText("Diccionario");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        estadisticasLabel.setBackground(new java.awt.Color(131, 103, 93));
+        estadisticasLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        estadisticasLabel.setForeground(new java.awt.Color(255, 248, 240));
+        estadisticasLabel.setText(" Estadisticas");
+        estadisticasLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        estadisticasLabel.setOpaque(true);
+        estadisticasLabel.setPreferredSize(new java.awt.Dimension(270, 38));
+        estadisticasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                estadisticasLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                estadisticasLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                estadisticasLabelMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonEstadisticas)
-                    .addComponent(jButton1)
-                    .addComponent(BotonCards)
-                    .addComponent(BotonLista)
-                    .addComponent(BotonPomodoro)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+        titulo.setBackground(new java.awt.Color(255, 248, 240));
+        titulo.setFont(new java.awt.Font("sansserif", 1, 48)); // NOI18N
+        titulo.setForeground(new java.awt.Color(255, 248, 240));
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("SeiTasks");
+        titulo.setToolTipText("");
+        titulo.setPreferredSize(new java.awt.Dimension(270, 62));
+
+        javax.swing.GroupLayout sideBarLayout = new javax.swing.GroupLayout(sideBar);
+        sideBar.setLayout(sideBarLayout);
+        sideBarLayout.setHorizontalGroup(
+            sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sideBarLayout.createSequentialGroup()
+                .addGroup(sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(diccionarioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(estadisticasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sideBarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pomodoroLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listaLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(flashCardLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(BotonPomodoro)
-                .addGap(18, 18, 18)
-                .addComponent(BotonLista)
-                .addGap(18, 18, 18)
-                .addComponent(BotonCards)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(BotonEstadisticas)
-                .addContainerGap(209, Short.MAX_VALUE))
+        sideBarLayout.setVerticalGroup(
+            sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sideBarLayout.createSequentialGroup()
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(listaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(flashCardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(pomodoroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(diccionarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(estadisticasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(238, Short.MAX_VALUE))
         );
+
+        bg.add(sideBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        contenido.setBackground(new java.awt.Color(248, 244, 239));
+
+        javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
+        contenido.setLayout(contenidoLayout);
+        contenidoLayout.setHorizontalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
+        );
+        contenidoLayout.setVerticalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+
+        bg.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 1010, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(515, Short.MAX_VALUE))
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    Color bgColor = new Color(131,103,93);
+    Color hoverColor = new Color(93,64,55);
+    
+    private void pomodoroLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pomodoroLabelMouseClicked
+        ShowPanel(new Pomodoro());
+    }//GEN-LAST:event_pomodoroLabelMouseClicked
 
-    private void BotonEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEstadisticasActionPerformed
+    private void listaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaLabelMouseClicked
+        ShowPanel(new Menu());
+    }//GEN-LAST:event_listaLabelMouseClicked
+
+    private void estadisticasLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasLabelMouseClicked
         java.util.List<RespuestaEncuesta> resultados = LectorEncuesta.leerResultados();
         System.out.println(resultados);
         GraficadorBarras.mostrarGraficoBarras(resultados);
         GraficasTorta.mostrarGraficas(resultados);
-    }//GEN-LAST:event_BotonEstadisticasActionPerformed
+    }//GEN-LAST:event_estadisticasLabelMouseClicked
 
-    private void BotonPomodoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPomodoroActionPerformed
-        MainPomodoro.main();
-    }//GEN-LAST:event_BotonPomodoroActionPerformed
+    private void flashCardLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flashCardLabelMouseClicked
+        ShowPanel(new FalshCardWindow());
+    }//GEN-LAST:event_flashCardLabelMouseClicked
 
-    private void BotonListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonListaActionPerformed
-        MainTareas.main();
-    }//GEN-LAST:event_BotonListaActionPerformed
-
-    private void BotonCardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCardsActionPerformed
-        MainCards.main();
-    }//GEN-LAST:event_BotonCardsActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void diccionarioLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diccionarioLabelMouseClicked
         Diccionario.main();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_diccionarioLabelMouseClicked
+
+    private void listaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaLabelMouseEntered
+        listaLabel.setBackground(hoverColor);
+    }//GEN-LAST:event_listaLabelMouseEntered
+
+    private void listaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaLabelMouseExited
+        listaLabel.setBackground(bgColor);
+    }//GEN-LAST:event_listaLabelMouseExited
+
+    private void flashCardLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flashCardLabelMouseEntered
+        flashCardLabel.setBackground(hoverColor);
+    }//GEN-LAST:event_flashCardLabelMouseEntered
+
+    private void flashCardLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flashCardLabelMouseExited
+        flashCardLabel.setBackground(bgColor);
+    }//GEN-LAST:event_flashCardLabelMouseExited
+
+    private void pomodoroLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pomodoroLabelMouseEntered
+        pomodoroLabel.setBackground(hoverColor);
+    }//GEN-LAST:event_pomodoroLabelMouseEntered
+
+    private void pomodoroLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pomodoroLabelMouseExited
+        pomodoroLabel.setBackground(bgColor);
+    }//GEN-LAST:event_pomodoroLabelMouseExited
+
+    private void diccionarioLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diccionarioLabelMouseEntered
+        diccionarioLabel.setBackground(hoverColor);
+    }//GEN-LAST:event_diccionarioLabelMouseEntered
+
+    private void diccionarioLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diccionarioLabelMouseExited
+        diccionarioLabel.setBackground(bgColor);
+    }//GEN-LAST:event_diccionarioLabelMouseExited
+
+    private void estadisticasLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasLabelMouseEntered
+        estadisticasLabel.setBackground(hoverColor);
+    }//GEN-LAST:event_estadisticasLabelMouseEntered
+
+    private void estadisticasLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasLabelMouseExited
+        estadisticasLabel.setBackground(bgColor);
+    }//GEN-LAST:event_estadisticasLabelMouseExited
 
     /**
      * @param args the command line arguments
      */
+    
+    private void ShowPanel(JPanel p){
+        p.setSize(1010,720);
+        p.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(p, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }
+    
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(() -> new MenuPrincipalFrame().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCards;
-    private javax.swing.JButton BotonEstadisticas;
-    private javax.swing.JButton BotonLista;
-    private javax.swing.JButton BotonPomodoro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel bg;
+    private javax.swing.JPanel contenido;
+    private javax.swing.JLabel diccionarioLabel;
+    private javax.swing.JLabel estadisticasLabel;
+    private javax.swing.JLabel flashCardLabel;
+    private javax.swing.JLabel listaLabel;
+    private javax.swing.JLabel pomodoroLabel;
+    private javax.swing.JPanel sideBar;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }
