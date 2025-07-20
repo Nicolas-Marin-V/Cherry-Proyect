@@ -61,51 +61,53 @@ public class FalshCardWindow extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(960, 540));
 
         Background.setBackground(new java.awt.Color(18, 18, 18));
-        Background.setMinimumSize(new java.awt.Dimension(950, 540));
+        Background.setMinimumSize(new java.awt.Dimension(1010, 720));
         Background.setPreferredSize(new java.awt.Dimension(950, 540));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        FlashCardAdd.setBackground(new java.awt.Color(30, 30, 30));
+        FlashCardAdd.setBackground(new java.awt.Color(237, 224, 212));
 
-        jLabel3.setBackground(new java.awt.Color(237, 237, 237));
+        jLabel3.setBackground(new java.awt.Color(62, 39, 35));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(62, 39, 35));
         jLabel3.setText("FLASH CARD");
 
         jLabel4.setBackground(new java.awt.Color(176, 176, 176));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(78, 52, 46));
         jLabel4.setText("Pregunta:");
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(78, 52, 46));
         jLabel5.setText("Respuesta:");
 
-        Preguntatxt.setBackground(new java.awt.Color(42, 42, 42));
+        Preguntatxt.setBackground(new java.awt.Color(215, 204, 200));
         Preguntatxt.setForeground(new java.awt.Color(255, 255, 255));
         Preguntatxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        Preguntatxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Preguntatxt.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(62, 39, 35)));
         Preguntatxt.setCaretColor(new java.awt.Color(255, 255, 255));
+        Preguntatxt.setPreferredSize(new java.awt.Dimension(250, 100));
         Preguntatxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PreguntatxtActionPerformed(evt);
             }
         });
 
-        Respuestatxt.setBackground(new java.awt.Color(42, 42, 42));
+        Respuestatxt.setBackground(new java.awt.Color(215, 204, 200));
         Respuestatxt.setForeground(new java.awt.Color(255, 255, 255));
         Respuestatxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         Respuestatxt.setToolTipText("");
-        Respuestatxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Respuestatxt.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         Respuestatxt.setCaretColor(new java.awt.Color(255, 255, 255));
+        Respuestatxt.setPreferredSize(new java.awt.Dimension(250, 100));
         Respuestatxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RespuestatxtActionPerformed(evt);
             }
         });
 
-        Add.setBackground(new java.awt.Color(94, 53, 177));
+        Add.setBackground(new java.awt.Color(93, 64, 55));
         Add.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Add.setForeground(new java.awt.Color(255, 255, 255));
         Add.setText("Agregar");
@@ -125,7 +127,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(42, 42, 42));
+        jButton1.setBackground(new java.awt.Color(141, 110, 99));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Menu");
@@ -136,8 +138,6 @@ public class FalshCardWindow extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\esteb\\Downloads\\SeitaskPng (2).png")); // NOI18N
-
         javax.swing.GroupLayout FlashCardAddLayout = new javax.swing.GroupLayout(FlashCardAdd);
         FlashCardAdd.setLayout(FlashCardAddLayout);
         FlashCardAddLayout.setHorizontalGroup(
@@ -146,21 +146,19 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FlashCardAddLayout.createSequentialGroup()
-                        .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Preguntatxt, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FlashCardAddLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
                         .addGap(14, 14, 14))
                     .addGroup(FlashCardAddLayout.createSequentialGroup()
                         .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Preguntatxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                            .addComponent(Respuestatxt, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                            .addComponent(Add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Respuestatxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
         FlashCardAddLayout.setVerticalGroup(
             FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,32 +166,32 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 .addGroup(FlashCardAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FlashCardAddLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel3)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FlashCardAddLayout.createSequentialGroup()
+                        .addComponent(jLabel3))
+                    .addGroup(FlashCardAddLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jLabel1)))
+                .addGap(93, 93, 93)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Preguntatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Preguntatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Respuestatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(Respuestatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                 .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        Background.add(FlashCardAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 540));
+        Background.add(FlashCardAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 720));
 
-        ShowFlashcard.setBackground(new java.awt.Color(18, 18, 18));
+        ShowFlashcard.setBackground(new java.awt.Color(248, 244, 239));
         ShowFlashcard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Anterior.setBackground(new java.awt.Color(42, 42, 42));
+        Anterior.setBackground(new java.awt.Color(93, 64, 55));
+        Anterior.setForeground(new java.awt.Color(255, 255, 255));
         Anterior.setText("Anterior");
         Anterior.setBorder(null);
         Anterior.setBorderPainted(false);
@@ -202,9 +200,10 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 AnteriorActionPerformed(evt);
             }
         });
-        ShowFlashcard.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 60, 30));
+        ShowFlashcard.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 490, 60, 30));
 
-        Siguiente.setBackground(new java.awt.Color(42, 42, 42));
+        Siguiente.setBackground(new java.awt.Color(93, 64, 55));
+        Siguiente.setForeground(new java.awt.Color(255, 255, 255));
         Siguiente.setText("Siguiente");
         Siguiente.setBorder(null);
         Siguiente.setBorderPainted(false);
@@ -213,9 +212,9 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 SiguienteActionPerformed(evt);
             }
         });
-        ShowFlashcard.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 60, 30));
+        ShowFlashcard.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 60, 30));
 
-        RespuestatxtArea.setBackground(new java.awt.Color(62, 29, 87));
+        RespuestatxtArea.setBackground(new java.awt.Color(253, 249, 246));
         RespuestatxtArea.setColumns(20);
         RespuestatxtArea.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         RespuestatxtArea.setForeground(new java.awt.Color(255, 255, 255));
@@ -229,9 +228,9 @@ public class FalshCardWindow extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(RespuestatxtArea);
 
-        ShowFlashcard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 600, 320));
+        ShowFlashcard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 600, 320));
 
-        PreguntatxtArea.setBackground(new java.awt.Color(62, 30, 104));
+        PreguntatxtArea.setBackground(new java.awt.Color(215, 204, 200));
         PreguntatxtArea.setColumns(20);
         PreguntatxtArea.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         PreguntatxtArea.setForeground(new java.awt.Color(255, 255, 255));
@@ -245,49 +244,53 @@ public class FalshCardWindow extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(PreguntatxtArea);
 
-        ShowFlashcard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 600, 320));
+        ShowFlashcard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 600, 320));
 
-        jPanel1.setBackground(new java.awt.Color(30, 30, 30));
+        jPanel1.setBackground(new java.awt.Color(215, 204, 200));
 
-        PostOrderButton.setBackground(new java.awt.Color(42, 42, 42));
+        PostOrderButton.setBackground(new java.awt.Color(62, 39, 35));
         PostOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PostOrderButton.setForeground(new java.awt.Color(255, 255, 255));
         PostOrderButton.setText("PostOrder");
         PostOrderButton.setBorder(null);
+        PostOrderButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         PostOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PostOrderButtonActionPerformed(evt);
             }
         });
 
-        LinkedButton.setBackground(new java.awt.Color(42, 42, 42));
+        LinkedButton.setBackground(new java.awt.Color(62, 39, 35));
         LinkedButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LinkedButton.setForeground(new java.awt.Color(255, 255, 255));
         LinkedButton.setText("Modo Lista");
         LinkedButton.setBorder(null);
+        LinkedButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LinkedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LinkedButtonActionPerformed(evt);
             }
         });
 
-        InOrderButton.setBackground(new java.awt.Color(42, 42, 42));
+        InOrderButton.setBackground(new java.awt.Color(62, 39, 35));
         InOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         InOrderButton.setForeground(new java.awt.Color(255, 255, 255));
         InOrderButton.setText("InOrder");
         InOrderButton.setBorder(null);
+        InOrderButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         InOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InOrderButtonActionPerformed(evt);
             }
         });
 
-        PreOrderButton.setBackground(new java.awt.Color(42, 42, 42));
+        PreOrderButton.setBackground(new java.awt.Color(62, 39, 35));
         PreOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PreOrderButton.setForeground(new java.awt.Color(255, 255, 255));
         PreOrderButton.setText("PreOrder");
         PreOrderButton.setBorder(null);
         PreOrderButton.setBorderPainted(false);
+        PreOrderButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         PreOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PreOrderButtonActionPerformed(evt);
@@ -299,7 +302,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
+                .addContainerGap(162, Short.MAX_VALUE)
                 .addComponent(LinkedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PostOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,7 +310,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 .addComponent(InOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PreOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addGap(126, 126, 126))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,9 +326,9 @@ public class FalshCardWindow extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        ShowFlashcard.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 670, 70));
+        ShowFlashcard.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 730, 70));
 
-        Background.add(ShowFlashcard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 670, 540));
+        Background.add(ShowFlashcard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 730, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -554,11 +557,11 @@ public class FalshCardWindow extends javax.swing.JPanel {
     }//GEN-LAST:event_PostOrderButtonActionPerformed
 
     private void AddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseEntered
-        Add.setBackground(Color.decode("#542688"));
+        Add.setBackground(Color.decode("#3E2723"));
     }//GEN-LAST:event_AddMouseEntered
 
     private void AddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseExited
-        Add.setBackground(Color.decode("#5E35B1"));
+        Add.setBackground(Color.decode("#5D4037"));
     }//GEN-LAST:event_AddMouseExited
 
     private void PreguntatxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PreguntatxtAreaMouseClicked

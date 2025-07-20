@@ -21,8 +21,8 @@ public class GradientPanel extends javax.swing.JPanel {
         super.paintComponent(g);
         java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
 
-       java.awt.Color colorInicio = java.awt.Color.decode("#371C4D");
-        java.awt.Color colorFinal = new java.awt.Color(0x1E1E1E);    // Morado oscuro (más que #5E35B1)
+       java.awt.Color colorInicio = java.awt.Color.decode("#EDE0D4");
+        java.awt.Color colorFinal = new java.awt.Color(215,204,200);
 
         int width = getWidth();
         int height = getHeight();

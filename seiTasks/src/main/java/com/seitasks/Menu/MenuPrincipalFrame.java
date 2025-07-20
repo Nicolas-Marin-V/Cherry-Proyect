@@ -53,11 +53,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         contenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         bg.setBackground(new java.awt.Color(248, 244, 239));
-        bg.setMinimumSize(new java.awt.Dimension(1280, 720));
+        bg.setMinimumSize(new java.awt.Dimension(1280, 750));
         bg.setPreferredSize(new java.awt.Dimension(1280, 720));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -160,7 +159,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         });
 
         titulo.setBackground(new java.awt.Color(255, 248, 240));
-        titulo.setFont(new java.awt.Font("sansserif", 1, 48)); // NOI18N
+        titulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 248, 240));
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("SeiTasks");
@@ -198,10 +197,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 .addComponent(diccionarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(estadisticasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
-        bg.add(sideBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bg.add(sideBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 750));
 
         contenido.setBackground(new java.awt.Color(248, 244, 239));
 
@@ -216,7 +215,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             .addGap(0, 720, Short.MAX_VALUE)
         );
 
-        bg.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 1010, 720));
+        bg.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

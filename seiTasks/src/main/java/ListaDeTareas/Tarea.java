@@ -14,7 +14,7 @@ public class Tarea {
         this.prioridad = prioridad;
         this.completada = completada;
     }
-
+    
     public String getNombre() {
         return nombre;
     }

@@ -23,30 +23,35 @@ public class Menu extends javax.swing.JPanel {
      */
     public Menu() {
         initComponents();
-        cargarTareasEnTabla();
+        cargarTabla();
         cargarPrioridades();
         
     }
     
     private void cargarPrioridades() {
         comboPrioridad.removeAllItems();
-        for (int i = 1; i <= 5; i++){
-            comboPrioridad.addItem(String.valueOf(i));
-        }
+        comboPrioridad.addItem("1 (Alta)");
+        comboPrioridad.addItem("2");
+        comboPrioridad.addItem("3");
+        comboPrioridad.addItem("4");
+        comboPrioridad.addItem("5 (Baja)");
     }
     
-    private void cargarTareasEnTabla() {
+    private void cargarTabla() {
         List<Tarea> tareas = TareaManager.cargarTareas();
 
         String[] columnas = {"Nombre", "Prioridad", "Completada"};
         Object[][] datos = new Object[tareas.size()][3];
 
+        
+        
         for (int i = 0; i < tareas.size(); i++) {
             Tarea t = tareas.get(i);
             datos[i][0] = t.getNombre();
             datos[i][1] = t.getPrioridad();
             datos[i][2] = t.isCompletada() ? "Sí" : "No";
         }
+        
         tablaTareas.setModel(new javax.swing.table.DefaultTableModel(
             datos,
             columnas
@@ -79,12 +84,13 @@ public class Menu extends javax.swing.JPanel {
         chkCompletada = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
         btnComplete = new javax.swing.JButton();
-        BotonMenu = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTareas = new javax.swing.JTable();
         comboPrioridad = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        tituloCreacion = new javax.swing.JLabel();
         delete1 = new javax.swing.JButton();
+        bg2 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1010, 720));
 
@@ -92,13 +98,13 @@ public class Menu extends javax.swing.JPanel {
         bg.setPreferredSize(new java.awt.Dimension(1010, 720));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(215, 204, 200));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(62, 39, 35));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Tareas");
-        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, -1));
+        jLabel2.setText("TAREAS");
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 80));
 
-        txtNombre.setText("Nombre");
         txtNombre.setToolTipText("");
         txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +112,7 @@ public class Menu extends javax.swing.JPanel {
                 txtNombreActionPerformed(evt);
             }
         });
-        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 160, 20));
+        bg.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 160, 20));
 
         chkCompletada.setBackground(new java.awt.Color(255, 255, 255));
         chkCompletada.setText("Completa");
@@ -116,7 +122,7 @@ public class Menu extends javax.swing.JPanel {
                 chkCompletadaActionPerformed(evt);
             }
         });
-        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
+        bg.add(chkCompletada, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(93, 64, 55));
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,7 +133,7 @@ public class Menu extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
-        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+        bg.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, -1, -1));
 
         btnComplete.setBackground(new java.awt.Color(93, 64, 55));
         btnComplete.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,18 +144,7 @@ public class Menu extends javax.swing.JPanel {
                 btnCompleteActionPerformed(evt);
             }
         });
-        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 580, -1, -1));
-
-        BotonMenu.setBackground(new java.awt.Color(93, 64, 55));
-        BotonMenu.setForeground(new java.awt.Color(255, 255, 255));
-        BotonMenu.setText("Menu");
-        BotonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        BotonMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonMenuActionPerformed(evt);
-            }
-        });
-        bg.add(BotonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+        bg.add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 580, -1, -1));
 
         tablaTareas.setBackground(new java.awt.Color(253, 249, 246));
         tablaTareas.setForeground(new java.awt.Color(78, 52, 46));
@@ -169,7 +164,7 @@ public class Menu extends javax.swing.JPanel {
         tablaTareas.setSelectionForeground(new java.awt.Color(62, 39, 35));
         jScrollPane2.setViewportView(tablaTareas);
 
-        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, -1));
 
         comboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboPrioridad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -178,11 +173,12 @@ public class Menu extends javax.swing.JPanel {
                 comboPrioridadActionPerformed(evt);
             }
         });
-        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        bg.add(comboPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, -1, -1));
 
-        jLabel3.setForeground(new java.awt.Color(62, 39, 35));
-        jLabel3.setText("Creacion de Tareas");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        tituloCreacion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        tituloCreacion.setForeground(new java.awt.Color(62, 39, 35));
+        tituloCreacion.setText("Creacion de Tareas");
+        bg.add(tituloCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
         delete1.setBackground(new java.awt.Color(93, 64, 55));
         delete1.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,15 +189,43 @@ public class Menu extends javax.swing.JPanel {
                 delete1ActionPerformed(evt);
             }
         });
-        bg.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
+        bg.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 580, -1, -1));
+
+        bg2.setBackground(new java.awt.Color(237, 224, 212));
+
+        javax.swing.GroupLayout bg2Layout = new javax.swing.GroupLayout(bg2);
+        bg2.setLayout(bg2Layout);
+        bg2Layout.setHorizontalGroup(
+            bg2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 370, Short.MAX_VALUE)
+        );
+        bg2Layout.setVerticalGroup(
+            bg2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        bg.add(bg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 640));
+
+        jPanel2.setBackground(new java.awt.Color(215, 204, 200));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +239,8 @@ public class Menu extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String nombre = txtNombre.getText();
-        int prioridad = Integer.parseInt((String) comboPrioridad.getSelectedItem());
+        String seleccion = (String) comboPrioridad.getSelectedItem();
+        int prioridad = Integer.parseInt(seleccion.substring(0, 1));
         boolean completada = chkCompletada.isSelected();
 
         Tarea tarea = new Tarea(nombre, prioridad, completada);
@@ -225,77 +250,58 @@ public class Menu extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        cargarTareasEnTabla();
+        txtNombre.setText("");
+        cargarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
-
         int filaSeleccionada = tablaTareas.getSelectedRow();
 
         if (filaSeleccionada != -1) {
-            boolean exito = false;
             try {
-                exito = TareaManager.marcarCompletadaIndice(filaSeleccionada);
+                TareaManager.marcarCompletadaIndice(filaSeleccionada);
             } catch (IOException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (exito) {
-                JOptionPane.showMessageDialog(this, "Tarea marcada como completada.");
-                cargarTareasEnTabla(); // refrescar
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo marcar la tarea.");
-            }
-     } else {
+        } else {
             JOptionPane.showMessageDialog(this, "Selecciona una tarea de la tabla.");
     }   
-        cargarTareasEnTabla();
+        cargarTabla();
     }//GEN-LAST:event_btnCompleteActionPerformed
 
     private void chkCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkCompletadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkCompletadaActionPerformed
 
-    private void BotonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenuActionPerformed
-        javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
-    }//GEN-LAST:event_BotonMenuActionPerformed
-
     private void comboPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPrioridadActionPerformed
         
     }//GEN-LAST:event_comboPrioridadActionPerformed
 
     private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
-        String nombre = txtNombre.getText();
-
-        boolean exito = false;
+        int filaSeleccionada = tablaTareas.getSelectedRow();
+        
         try {
-            exito = TareaManager.eliminarTareaNombre(nombre);
+            TareaManager.eliminarTareaIndice(filaSeleccionada);
         } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Tarea eliminada con éxito.");
-        } else {
-        JOptionPane.showMessageDialog(this, "No se encontró una tarea con ese nombre.");
-        }
-        
-        cargarTareasEnTabla();
+        cargarTabla();
     }//GEN-LAST:event_delete1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonMenu;
     private javax.swing.JPanel bg;
+    private javax.swing.JPanel bg2;
     private javax.swing.JButton btnComplete;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JCheckBox chkCompletada;
     private javax.swing.JComboBox<String> comboPrioridad;
     private javax.swing.JButton delete1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaTareas;
+    private javax.swing.JLabel tituloCreacion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
