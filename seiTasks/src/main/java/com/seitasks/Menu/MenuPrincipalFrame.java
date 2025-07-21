@@ -5,6 +5,7 @@
 package com.seitasks.Menu;
 
 import Diccionario.Diccionario;
+import Diccionario.DiccionarioB;
 import ListaDeTareas.Menu;
 import com.seitasks.FlashCards.FalshCardWindow;
 import com.seitasks.Pomodoro.Pomodoro;
@@ -257,7 +258,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_flashCardLabelMouseClicked
 
     private void diccionarioLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diccionarioLabelMouseClicked
-        Diccionario.main();
+        ShowPanel(new DiccionarioB());
     }//GEN-LAST:event_diccionarioLabelMouseClicked
 
     private void listaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaLabelMouseEntered

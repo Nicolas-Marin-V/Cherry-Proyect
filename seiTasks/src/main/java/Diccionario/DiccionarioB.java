@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -30,6 +31,10 @@ public class DiccionarioB extends javax.swing.JPanel {
     /**
      * Creates new form Diccionario
      */
+    public DiccionarioB(){
+        initComponents();
+    }
+    
     private int hashing(String texto){
             int longitud = texto.length();
             Integer hash_value = 0;
@@ -97,9 +102,9 @@ public class DiccionarioB extends javax.swing.JPanel {
         TextAreaDefinicion = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         ButtonVolver = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListCatalogo = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
         BotonBuscar = new javax.swing.JToggleButton();
         LabelBuscar = new javax.swing.JLabel();
         ButtonNuevo = new javax.swing.JButton();
@@ -249,27 +254,17 @@ public class DiccionarioB extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        setBackground(new java.awt.Color(248, 244, 239));
+        setMinimumSize(new java.awt.Dimension(1010, 720));
+        setPreferredSize(new java.awt.Dimension(1010, 720));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(70, 130, 169));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 580));
 
         ListCatalogo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(ListCatalogo);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 260, 330));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 490, 640));
+
+        jPanel1.setBackground(new java.awt.Color(237, 224, 212));
 
         BotonBuscar.setText("Buscar");
         BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -277,12 +272,11 @@ public class DiccionarioB extends javax.swing.JPanel {
                 BotonBuscarActionPerformed(evt);
             }
         });
-        add(BotonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
 
         LabelBuscar.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        LabelBuscar.setForeground(new java.awt.Color(62, 39, 35));
         LabelBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelBuscar.setText("Buscar concepto");
-        add(LabelBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 240, -1));
 
         ButtonNuevo.setText("Nuevo concepto");
         ButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -290,7 +284,6 @@ public class DiccionarioB extends javax.swing.JPanel {
                 ButtonNuevoActionPerformed(evt);
             }
         });
-        add(ButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 140, -1));
 
         TextBoxBuscar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         TextBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +291,44 @@ public class DiccionarioB extends javax.swing.JPanel {
                 TextBoxBuscarActionPerformed(evt);
             }
         });
-        add(TextBoxBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 210, 30));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(TextBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(BotonBuscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(ButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(98, 98, 98))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(LabelBuscar)
+                .addGap(18, 18, 18)
+                .addComponent(TextBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(BotonBuscar)
+                .addGap(7, 7, 7)
+                .addComponent(ButtonNuevo)
+                .addContainerGap(354, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 720));
+
+        getAccessibleContext().setAccessibleName("");
+        getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
