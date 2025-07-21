@@ -21,6 +21,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
     
     public FalshCardWindow() {
         initComponents();
+        loadFlashcards(); 
         jScrollPane1.setVisible(true);   // Pregunta visible
         jScrollPane2.setVisible(false); // Respuesta oculta
         mostrandoPregunta = true;
@@ -83,7 +84,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         jLabel5.setText("Respuesta:");
 
         Preguntatxt.setBackground(new java.awt.Color(215, 204, 200));
-        Preguntatxt.setForeground(new java.awt.Color(255, 255, 255));
+        Preguntatxt.setForeground(new java.awt.Color(0, 0, 0));
         Preguntatxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         Preguntatxt.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(62, 39, 35)));
         Preguntatxt.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -95,7 +96,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         });
 
         Respuestatxt.setBackground(new java.awt.Color(215, 204, 200));
-        Respuestatxt.setForeground(new java.awt.Color(255, 255, 255));
+        Respuestatxt.setForeground(new java.awt.Color(0, 0, 0));
         Respuestatxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         Respuestatxt.setToolTipText("");
         Respuestatxt.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
@@ -130,7 +131,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(141, 110, 99));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Menu");
+        jButton1.setText("Encuesta");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +218,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         RespuestatxtArea.setBackground(new java.awt.Color(253, 249, 246));
         RespuestatxtArea.setColumns(20);
         RespuestatxtArea.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        RespuestatxtArea.setForeground(new java.awt.Color(255, 255, 255));
+        RespuestatxtArea.setForeground(new java.awt.Color(0, 0, 0));
         RespuestatxtArea.setLineWrap(true);
         RespuestatxtArea.setRows(5);
         RespuestatxtArea.setBorder(null);
@@ -233,7 +234,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         PreguntatxtArea.setBackground(new java.awt.Color(215, 204, 200));
         PreguntatxtArea.setColumns(20);
         PreguntatxtArea.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        PreguntatxtArea.setForeground(new java.awt.Color(255, 255, 255));
+        PreguntatxtArea.setForeground(new java.awt.Color(0, 0, 0));
         PreguntatxtArea.setLineWrap(true);
         PreguntatxtArea.setRows(5);
         PreguntatxtArea.setBorder(null);
