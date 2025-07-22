@@ -4,14 +4,23 @@
  */
 package Diccionario;
 
+import Diccionario.Entrada;
+import ListaDeTareas.Tarea;
+import ListaDeTareas.TareaManager;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import java.awt.Color;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -33,7 +42,20 @@ public class DiccionarioB extends javax.swing.JPanel {
      */
     public DiccionarioB(){
         initComponents();
+        cargarLista();  
     }
+    
+private void cargarLista() {
+    List<Entrada> auxentrada = leer();  // Asumiendo que este método te da una lista de entradas
+
+    DefaultListModel<String> modeloLista = new DefaultListModel<>();
+
+    for (Entrada entrada : auxentrada) {
+        modeloLista.addElement(entrada.getTitulo());  // Asumiendo que quieres mostrar solo el título
+    }
+
+    ListCatalogo.setModel(modeloLista);  // Establece el modelo correcto
+}
     
     private int hashing(String texto){
             int longitud = texto.length();
@@ -80,14 +102,109 @@ public class DiccionarioB extends javax.swing.JPanel {
         }
         return resultados;
     }
+       
+   private void eliminarYReescribir(String tituloEliminar) {
+    try {
+        int hashEliminar = hashing(tituloEliminar.toLowerCase());
+        List<Entrada> entradas = leer();
 
+        try (PrintWriter writer = new PrintWriter(new FileWriter("diccionario.csv", false))) {
+            writer.println("Hash,Titulo,Definicion");
+
+            for (Entrada e : entradas) {
+                if (e.getHash() != hashEliminar) {
+                    writer.println(e.getHash() + "," + e.getTitulo() + "," + e.getDefinición());
+                }
+            }
+        }
+
+        cargarLista(); 
+        JOptionPane.showMessageDialog(this, "Entrada eliminada correctamente.");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+
+        
+    void buscar(String cadena){
+            
+            try {
+    String auxhash = cadena;
+    String textohash = auxhash.toLowerCase();
+    int textoABuscar = hashing(textohash);
+    List<Entrada> listaaux = leer();
+    int tamaño = listaaux.size();
+
+    boolean encontrado = false;
+
+    for(int i = 0; i < tamaño; i++) {
+        if(listaaux.get(i).getHash() == textoABuscar){
+            String consultaTitulo = listaaux.get(i).getTitulo();
+            String consultaDefinicion = listaaux.get(i).getDefinición();
+            TextAreaTitulo.setText(consultaTitulo);
+            TextAreaDefinicion.setText(consultaDefinicion);
+            DialogValor.pack();
+            DialogValor.setLocationRelativeTo(this);
+            DialogValor.setVisible(true);
+            encontrado = true;
+            break;
+        }
+            }
+
+            if (!encontrado) {
+                JOptionPane.showMessageDialog(this, "La entrada no fue encontrada en el diccionario.",
+                                              "No encontrado", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error en la búsqueda: " + e.getMessage(),
+                                          "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+    
+       void verificarExistencia(String textoTitulo,String textoDefinicion){
+      try {
+        String auxhash = textoTitulo;
+        String textohash = auxhash.toLowerCase();
+        int textoABuscar = hashing(textohash);
+        List<Entrada> listaaux = leer();
+        int tamaño = listaaux.size();
+
+        boolean encontrado = false;
+
+        for(int i = 0; i < tamaño; i++) {
+            if(listaaux.get(i).getHash() == textoABuscar){
+                JOptionPane.showMessageDialog(this, "Ya existe una entrada con ese titulo, borrela o ponga un nuevo titulo",
+                "Error", JOptionPane.INFORMATION_MESSAGE);
+                encontrado = true;
+                break;
+            }
+                }
+
+                if (!encontrado) {
+                    JOptionPane.showMessageDialog(this, "La entrada fue registrada exitozamente",
+                                                  "Exito", JOptionPane.INFORMATION_MESSAGE);
+                    guardarEntrada(textoABuscar, textohash, textoDefinicion);
+                }
+
+                } catch(Exception e) {
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error en la búsqueda: " + e.getMessage(),
+                                              "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        
+       
 
     @SuppressWarnings("unchecked")
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         dialogNuevo = new javax.swing.JDialog();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         LabelTitulo = new javax.swing.JLabel();
         LabelDefinicion = new javax.swing.JLabel();
         TextTitulo = new javax.swing.JTextField();
@@ -102,6 +219,7 @@ public class DiccionarioB extends javax.swing.JPanel {
         TextAreaDefinicion = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         ButtonVolver = new javax.swing.JButton();
+        ButtonEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListCatalogo = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
@@ -110,18 +228,18 @@ public class DiccionarioB extends javax.swing.JPanel {
         ButtonNuevo = new javax.swing.JButton();
         TextBoxBuscar = new javax.swing.JTextField();
 
-        jPanel3.setBackground(new java.awt.Color(255, 251, 222));
-        jPanel3.setForeground(new java.awt.Color(255, 251, 222));
+        jPanel5.setBackground(new java.awt.Color(255, 251, 222));
+        jPanel5.setForeground(new java.awt.Color(255, 251, 222));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 121, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 111, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 319, Short.MAX_VALUE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         LabelTitulo.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -142,20 +260,20 @@ public class DiccionarioB extends javax.swing.JPanel {
         dialogNuevoLayout.setHorizontalGroup(
             dialogNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogNuevoLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(dialogNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonGuardar)
                     .addComponent(LabelDefinicion)
                     .addComponent(TextDefinicion, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelTitulo)
                     .addComponent(TextTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         dialogNuevoLayout.setVerticalGroup(
             dialogNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogNuevoLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addComponent(LabelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TextTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,10 +283,8 @@ public class DiccionarioB extends javax.swing.JPanel {
                 .addComponent(TextDefinicion, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ButtonGuardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(dialogNuevoLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         LabelTituloDic.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -209,6 +325,13 @@ public class DiccionarioB extends javax.swing.JPanel {
             }
         });
 
+        ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DialogValorLayout = new javax.swing.GroupLayout(DialogValor.getContentPane());
         DialogValor.getContentPane().setLayout(DialogValorLayout);
         DialogValorLayout.setHorizontalGroup(
@@ -226,15 +349,14 @@ public class DiccionarioB extends javax.swing.JPanel {
                                 .addComponent(LabelDefinicionDic, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69))))
                     .addGroup(DialogValorLayout.createSequentialGroup()
-                        .addGroup(DialogValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(38, 38, 38)
+                        .addGroup(DialogValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(DialogValorLayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(DialogValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(DialogValorLayout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addComponent(ButtonVolver)))
+                                .addComponent(ButtonVolver)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ButtonEliminar)))
                         .addContainerGap(49, Short.MAX_VALUE))))
         );
         DialogValorLayout.setVerticalGroup(
@@ -249,7 +371,9 @@ public class DiccionarioB extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ButtonVolver)
+                .addGroup(DialogValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonVolver)
+                    .addComponent(ButtonEliminar))
                 .addContainerGap(25, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -259,7 +383,13 @@ public class DiccionarioB extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1010, 720));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ListCatalogo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        ListCatalogo.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        ListCatalogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ListCatalogo.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListCatalogoValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(ListCatalogo);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 490, 640));
@@ -302,13 +432,10 @@ public class DiccionarioB extends javax.swing.JPanel {
                     .addComponent(LabelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(TextBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(BotonBuscar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(ButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonBuscar)
+                            .addComponent(ButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(98, 98, 98))
         );
         jPanel1Layout.setVerticalGroup(
@@ -332,25 +459,15 @@ public class DiccionarioB extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
-        String textohash = TextBoxBuscar.getText();
-        int textoABuscar = hashing(textohash);
-        List<Entrada> listaaux = leer();
-        int tamaño = listaaux.size();
-
-        for(int i = 0; i<tamaño; i++){
-            if(listaaux.get(i).getHash() == textoABuscar){
-                String consultaTitulo = listaaux.get(i).getTitulo();
-                String consultaDefinicion = listaaux.get(i).getDefinición();
-                TextAreaTitulo.setText(consultaTitulo);
-                TextAreaDefinicion.setText(consultaDefinicion);
-                DialogValor.pack();
-                DialogValor.setLocationRelativeTo(this);
-                DialogValor.setVisible(true);
-            }
-        }
+       String texto = TextBoxBuscar.getText();
+       buscar(texto);
+        
+        
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void ButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonNuevoActionPerformed
+        TextTitulo.setText("");
+        TextDefinicion.setText("");
         dialogNuevo.pack();
         dialogNuevo.setLocationRelativeTo(this);
         dialogNuevo.setVisible(true);
@@ -361,10 +478,12 @@ public class DiccionarioB extends javax.swing.JPanel {
     }//GEN-LAST:event_TextBoxBuscarActionPerformed
 
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
+        
+        
         String textoaux = TextTitulo.getText();
         String definicion = TextDefinicion.getText();
-        int aux = hashing(textoaux);
-        guardarEntrada(aux, textoaux, definicion);
+        verificarExistencia(textoaux,definicion);
+        cargarLista();
         dialogNuevo.dispose();
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
@@ -372,9 +491,39 @@ public class DiccionarioB extends javax.swing.JPanel {
         DialogValor.dispose();
     }//GEN-LAST:event_ButtonVolverActionPerformed
 
+    private void ListCatalogoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListCatalogoValueChanged
+            if (!evt.getValueIsAdjusting()) {
+            String tituloSeleccionado = ListCatalogo.getSelectedValue();
+            if (tituloSeleccionado != null) {
+                buscar(tituloSeleccionado);
+            }
+        }
+    
+    }//GEN-LAST:event_ListCatalogoValueChanged
 
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+        int res = JOptionPane.showOptionDialog(new JFrame(), "¿Quieres eliminar la entrada?","Elimnar",
+         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+         new Object[] { "Si", "No" }, JOptionPane.YES_OPTION);
+        switch (res) {
+            case JOptionPane.YES_OPTION -> {
+                String tituloSeleccionado = ListCatalogo.getSelectedValue();
+                eliminarYReescribir(tituloSeleccionado);
+                DialogValor.dispose();
+            }
+            case JOptionPane.NO_OPTION -> {
+            }
+            case JOptionPane.CLOSED_OPTION -> {
+            }
+            default -> {
+            }
+        }
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton BotonBuscar;
+    private javax.swing.JButton ButtonEliminar;
     private javax.swing.JButton ButtonGuardar;
     private javax.swing.JButton ButtonNuevo;
     private javax.swing.JButton ButtonVolver;
@@ -394,6 +543,8 @@ public class DiccionarioB extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
