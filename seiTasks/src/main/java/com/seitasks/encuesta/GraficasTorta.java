@@ -34,6 +34,8 @@ public class GraficasTorta extends JFrame {
 
     private static void mostrarGraficoMetodo(List<RespuestaEncuesta> respuestas) {
         int conMetodo = 0, sinMetodo = 0;
+        //0 pomodoro
+        //1 flascard      
         for (RespuestaEncuesta r : respuestas) {
             if (r.programa == 1) conMetodo++;
             else sinMetodo++;

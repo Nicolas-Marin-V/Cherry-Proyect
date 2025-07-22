@@ -2,8 +2,8 @@
 package com.seitasks.encuesta;
 
 import javax.swing.ButtonModel;
-import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
+import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter; 
 import javax.swing.JFrame;
 /**
  *

@@ -46,15 +46,15 @@ public class DiccionarioB extends javax.swing.JPanel {
     }
     
 private void cargarLista() {
-    List<Entrada> auxentrada = leer();  // Asumiendo que este método te da una lista de entradas
+    List<Entrada> auxentrada = leer();  
 
     DefaultListModel<String> modeloLista = new DefaultListModel<>();
 
     for (Entrada entrada : auxentrada) {
-        modeloLista.addElement(entrada.getTitulo());  // Asumiendo que quieres mostrar solo el título
+        modeloLista.addElement(entrada.getTitulo());  
     }
 
-    ListCatalogo.setModel(modeloLista);  // Establece el modelo correcto
+    ListCatalogo.setModel(modeloLista);  
 }
     
     private int hashing(String texto){
