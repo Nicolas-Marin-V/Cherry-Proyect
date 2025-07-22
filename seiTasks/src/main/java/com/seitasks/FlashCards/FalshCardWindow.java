@@ -129,7 +129,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(141, 110, 99));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Menu");
+        jButton1.setText("Registrar Sesión");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -518,10 +518,7 @@ public class FalshCardWindow extends javax.swing.JPanel {
         
         if (response == JOptionPane.YES_OPTION) {
             MainEncuesta.main(1);
-            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
-        } else if (response == JOptionPane.NO_OPTION) {
-            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
-        }         
+        }       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void LinkedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LinkedButtonActionPerformed
