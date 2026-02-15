@@ -9,7 +9,7 @@ public class LectorEncuesta {
 
     public static List<RespuestaEncuesta> leerResultados() {
         List<RespuestaEncuesta> resultados = new ArrayList<>();
-        try (CSVReader reader = new CSVReader(new FileReader("src/main/java/com/seitasks/encuesta/resultados.csv"))) {
+        try (CSVReader reader = new CSVReader(new FileReader("resultados.csv"))) {
             String[] fila;
             reader.readNext();
             while ((fila = reader.readNext()) != null && fila.length == 7) {

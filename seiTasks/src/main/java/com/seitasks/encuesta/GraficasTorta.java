@@ -11,7 +11,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class GraficasTorta extends ApplicationFrame {
+public class GraficasTorta extends JFrame {
 
     public GraficasTorta(String title, JFreeChart chart) {
         super(title);
@@ -34,6 +34,8 @@ public class GraficasTorta extends ApplicationFrame {
 
     private static void mostrarGraficoMetodo(List<RespuestaEncuesta> respuestas) {
         int conMetodo = 0, sinMetodo = 0;
+        //0 pomodoro
+        //1 flascard      
         for (RespuestaEncuesta r : respuestas) {
             if (r.programa == 1) conMetodo++;
             else sinMetodo++;

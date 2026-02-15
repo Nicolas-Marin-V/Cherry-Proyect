@@ -42,11 +42,22 @@ public class Pomodoro extends javax.swing.JPanel {
         btnPausar = new javax.swing.JButton();
         btnReiniciar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+
+        setBackground(new java.awt.Color(248, 244, 239));
+        setMaximumSize(new java.awt.Dimension(1010, 720));
+        setMinimumSize(new java.awt.Dimension(1010, 720));
+        setPreferredSize(new java.awt.Dimension(1010, 720));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(SpinnerEstudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
 
         labelEstudio.setBackground(new java.awt.Color(255, 51, 51));
         labelEstudio.setText("Estudio(min): ");
+        add(labelEstudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
         labelDescanso.setText("Descanso(Min): ");
+        add(labelDescanso, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        add(spinnerDescanso, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
 
         btnCambiarModo.setText("Cambiar a descanso");
         btnCambiarModo.addActionListener(new java.awt.event.ActionListener() {
@@ -54,77 +65,45 @@ public class Pomodoro extends javax.swing.JPanel {
                 btnCambiarModoActionPerformed(evt);
             }
         });
+        add(btnCambiarModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, -1, -1));
 
         labelTiempo.setBackground(new java.awt.Color(255, 51, 102));
         labelTiempo.setFont(new java.awt.Font("Dialog", 0, 72)); // NOI18N
         labelTiempo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTiempo.setText("60:00");
+        add(labelTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 220, 74));
 
         btnIniciar.setText("Iniciar");
+        add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
         btnPausar.setText("Pausar");
+        add(btnPausar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, -1, -1));
 
         btnReiniciar.setText("Reiniciar");
+        add(btnReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, -1, -1));
 
-        jButton1.setText("Menu");
+        jButton1.setText("Registrar Sesión");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(labelEstudio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SpinnerEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIniciar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(btnPausar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                        .addComponent(btnReiniciar)
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton1)
-                        .addGap(133, 133, 133))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelDescanso)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(spinnerDescanso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnCambiarModo)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        jPanel1.setBackground(new java.awt.Color(237, 224, 212));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpinnerEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEstudio)
-                    .addComponent(labelDescanso)
-                    .addComponent(spinnerDescanso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCambiarModo))
-                .addGap(87, 87, 87)
-                .addComponent(labelTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIniciar)
-                    .addComponent(btnPausar)
-                    .addComponent(btnReiniciar)
-                    .addComponent(jButton1))
-                .addGap(29, 29, 29))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 581, 1010, 140));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCambiarModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarModoActionPerformed
@@ -141,8 +120,6 @@ public class Pomodoro extends javax.swing.JPanel {
         
         if (response == JOptionPane.YES_OPTION) {
             MainEncuesta.main(0);
-        } else if (response == JOptionPane.NO_OPTION) {
-            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     
@@ -247,6 +224,7 @@ public class Pomodoro extends javax.swing.JPanel {
     private javax.swing.JButton btnPausar;
     private javax.swing.JButton btnReiniciar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelDescanso;
     private javax.swing.JLabel labelEstudio;
     private javax.swing.JLabel labelTiempo;

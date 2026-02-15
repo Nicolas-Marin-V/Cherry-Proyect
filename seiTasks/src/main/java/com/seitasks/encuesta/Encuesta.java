@@ -2,8 +2,9 @@
 package com.seitasks.encuesta;
 
 import javax.swing.ButtonModel;
-import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
+import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter; 
+import javax.swing.JFrame;
 /**
  *
  * @author Nicolas Marin
@@ -109,7 +110,7 @@ public class Encuesta extends javax.swing.JPanel {
         Valor4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         Valor4.setText("3");
         Valor4.setBorder(Valor1.getBorder());
-        Valor4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Valor4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Valor4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Valor4ActionPerformed(evt);
@@ -119,7 +120,7 @@ public class Encuesta extends javax.swing.JPanel {
         Respuestas.add(Valor3);
         Valor3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         Valor3.setText("4");
-        Valor3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Valor3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Valor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Valor3ActionPerformed(evt);
@@ -129,7 +130,7 @@ public class Encuesta extends javax.swing.JPanel {
         Respuestas.add(Valor2);
         Valor2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         Valor2.setText("2");
-        Valor2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Valor2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Valor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Valor2ActionPerformed(evt);
@@ -139,7 +140,7 @@ public class Encuesta extends javax.swing.JPanel {
         Respuestas.add(Valor1);
         Valor1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         Valor1.setText("1");
-        Valor1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Valor1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Valor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Valor1ActionPerformed(evt);
@@ -147,10 +148,10 @@ public class Encuesta extends javax.swing.JPanel {
         });
 
         BotonSiguiente.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        BotonSiguiente.setText("Comenzar");
+        BotonSiguiente.setText("Siguiente");
         BotonSiguiente.setBorder(null);
         BotonSiguiente.setBorderPainted(false);
-        BotonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSiguienteActionPerformed(evt);
@@ -177,7 +178,7 @@ public class Encuesta extends javax.swing.JPanel {
                             .addComponent(BotonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Valor1)
                             .addComponent(Valor3))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +198,7 @@ public class Encuesta extends javax.swing.JPanel {
                 .addComponent(Valor1)
                 .addGap(18, 18, 18)
                 .addComponent(BotonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(DecoracionInferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -226,39 +227,39 @@ public class Encuesta extends javax.swing.JPanel {
     Integer respuesta;
     respuesta = Seleccion();  
        switch (contador) {
-     case 0:
-          LabelPregunta.setText("Responde la encuesta");   
-     break;
-     case 1:
-     LabelPregunta.setText("¿Qué tan productivo te sentiste?");
-     productivo = respuesta;
-    
-     break;
-    case 2:
-     LabelPregunta.setText("¿Que tanto sientes que alcanzaste tus metas de estudio en esta sesión?");
-     metas = respuesta;
-     break;
-    case 3:
+     case 0 -> LabelPregunta.setText("Responde la encuesta");
+     case 1 -> {
+         LabelPregunta.setText("¿Qué tan productivo te sentiste?");
+         BotonSiguiente.setText("Siguiente");
+         productivo = respuesta;
+            }
+    case 2 -> {
+        LabelPregunta.setText("¿Que tanto sientes que alcanzaste tus metas de estudio en esta sesión?");
+        metas = respuesta;
+            }
+    case 3 -> {
         LabelPregunta.setText("¿Qué tan satisfecho estas con tus resultados?");
+        BotonSiguiente.setText("Siguiente");
         satisfecho =respuesta;
-        break; 
-    case 4:
-         LabelPregunta.setText("¿Qué tanta importancia le das al método de estudio por tus resultados?");
-         metodo = respuesta;
-    break;
-    case 5:
+            }
+    case 4 -> {
+        LabelPregunta.setText("¿Qué tanta importancia le das al método de estudio por tus resultados?");
+        BotonSiguiente.setText("Siguiente");
+        metodo = respuesta;
+            }
+    case 5 -> {
         LabelPregunta.setText("¿Qué nivel de estrés experimentaste durante esta sesión de estudio?");
+        BotonSiguiente.setText("Finalizar");
         estres = respuesta;
-        break;
-    case 6:
+            }
+    case 6 -> {
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
         hora = myDateObj.format(myFormatObj);
         Escritor.escribirResultados(productivo, metas, satisfecho, metodo, estres,hora,programa);
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
-        break;
-    default:
-     LabelPregunta.setText("Error critico la ventana no se cerro");
+            }
+    default -> LabelPregunta.setText("Error critico la ventana no se cerro");
   }
        contador++;
     }//GEN-LAST:event_BotonSiguienteActionPerformed

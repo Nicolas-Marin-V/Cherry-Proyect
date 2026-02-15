@@ -16,7 +16,7 @@ public class MainCards {
 
         ventana.setContentPane(new FalshCardWindow());
         
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.pack(); 
         ventana.setLocationRelativeTo(null); 
         ventana.setVisible(true); 
